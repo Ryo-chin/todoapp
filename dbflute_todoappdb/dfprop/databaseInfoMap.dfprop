@@ -18,8 +18,8 @@ map:{
     ; driver   = com.mysql.jdbc.Driver
     ; url      = jdbc:mysql://localhost:3306/todoappdb
     ; schema   = 
-    ; user     = todoappdb
-    ; password = todoappdb
+    ; user     = root
+    ; password =
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o propertiesMap: (NotRequired - Default map:{})

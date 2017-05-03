@@ -96,14 +96,14 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_MemberServiceId_Asc() { regOBA("MEMBER_SERVICE_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_MemberServiceId_Desc() { regOBD("MEMBER_SERVICE_ID"); return this; }
@@ -116,14 +116,14 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
@@ -136,14 +136,14 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_ServicePointCount_Asc() { regOBA("SERVICE_POINT_COUNT"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_ServicePointCount_Desc() { regOBD("SERVICE_POINT_COUNT"); return this; }
@@ -156,14 +156,14 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank}
+     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_ServiceRankCode_Asc() { regOBA("SERVICE_RANK_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank}
+     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_ServiceRankCode_Desc() { regOBD("SERVICE_RANK_CODE"); return this; }
@@ -176,14 +176,14 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_RegisterDatetime_Asc() { regOBA("REGISTER_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_RegisterDatetime_Desc() { regOBD("REGISTER_DATETIME"); return this; }
@@ -196,14 +196,14 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * REGISTER_USER: {NotNull, VARCHAR(200)}
+     * (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_RegisterUser_Asc() { regOBA("REGISTER_USER"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * REGISTER_USER: {NotNull, VARCHAR(200)}
+     * (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_RegisterUser_Desc() { regOBD("REGISTER_USER"); return this; }
@@ -216,14 +216,14 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_UpdateDatetime_Asc() { regOBA("UPDATE_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_UpdateDatetime_Desc() { regOBD("UPDATE_DATETIME"); return this; }
@@ -236,14 +236,14 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * UPDATE_USER: {NotNull, VARCHAR(200)}
+     * (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_UpdateUser_Asc() { regOBA("UPDATE_USER"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * UPDATE_USER: {NotNull, VARCHAR(200)}
+     * (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_UpdateUser_Desc() { regOBD("UPDATE_USER"); return this; }
@@ -256,14 +256,14 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * VERSION_NO: {NotNull, BIGINT(19)}
+     * (バージョン番号)VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_VersionNo_Asc() { regOBA("VERSION_NO"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * VERSION_NO: {NotNull, BIGINT(19)}
+     * (バージョン番号)VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_VersionNo_Desc() { regOBD("VERSION_NO"); return this; }

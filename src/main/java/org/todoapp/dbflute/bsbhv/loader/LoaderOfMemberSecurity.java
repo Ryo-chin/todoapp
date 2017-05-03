@@ -22,7 +22,7 @@ import org.todoapp.dbflute.exbhv.*;
 import org.todoapp.dbflute.exentity.*;
 
 /**
- * The referrer loader of (会員セキュリティ情報)MEMBER_SECURITY as TABLE. <br>
+ * The referrer loader of (会員セキュリティ)MEMBER_SECURITY as TABLE. <br>
  * <pre>
  * [primary key]
  *     MEMBER_ID

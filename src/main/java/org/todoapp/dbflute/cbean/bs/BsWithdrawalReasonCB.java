@@ -27,7 +27,6 @@ import org.dbflute.cbean.scoping.*;
 import org.dbflute.dbmeta.DBMetaProvider;
 import org.dbflute.twowaysql.factory.SqlAnalyzerFactory;
 import org.dbflute.twowaysql.style.BoundDateDisplayTimeZoneProvider;
-import org.todoapp.dbflute.allcommon.CDef;
 import org.todoapp.dbflute.allcommon.DBFluteConfig;
 import org.todoapp.dbflute.allcommon.DBMetaInstanceHandler;
 import org.todoapp.dbflute.allcommon.ImplementedInvokerAssistant;
@@ -96,19 +95,19 @@ public class BsWithdrawalReasonCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param withdrawalReasonCode (退会理由コード): PK, NotNull, CHAR(3), classification=WithdrawalReason. (NotNull)
+     * @param withdrawalReasonCode (退会理由コード): PK, NotNull, CHAR(3). (NotNull)
      * @return this. (NotNull)
      */
-    public WithdrawalReasonCB acceptPK(CDef.WithdrawalReason withdrawalReasonCode) {
+    public WithdrawalReasonCB acceptPK(String withdrawalReasonCode) {
         assertObjectNotNull("withdrawalReasonCode", withdrawalReasonCode);
         BsWithdrawalReasonCB cb = this;
-        cb.query().setWithdrawalReasonCode_Equal_AsWithdrawalReason(withdrawalReasonCode);
+        cb.query().setWithdrawalReasonCode_Equal(withdrawalReasonCode);
         return (WithdrawalReasonCB)this;
     }
 
     /**
      * Accept the query condition of unique key as equal.
-     * @param displayOrder : UQ, NotNull, INTEGER(10). (NotNull)
+     * @param displayOrder (表示順): UQ, NotNull, INT(10). (NotNull)
      * @return this. (NotNull)
      */
     public WithdrawalReasonCB acceptUniqueOf(Integer displayOrder) {
@@ -311,17 +310,17 @@ public class BsWithdrawalReasonCB extends AbstractConditionBean {
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * (退会理由コード)WITHDRAWAL_REASON_CODE: {PK, NotNull, CHAR(3), classification=WithdrawalReason}
+         * (退会理由コード)WITHDRAWAL_REASON_CODE: {PK, NotNull, CHAR(3)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnWithdrawalReasonCode() { return doColumn("WITHDRAWAL_REASON_CODE"); }
         /**
-         * (退会理由テキスト)WITHDRAWAL_REASON_TEXT: {NotNull, CLOB(2147483647)}
+         * (退会理由テキスト)WITHDRAWAL_REASON_TEXT: {NotNull, TEXT(65535)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnWithdrawalReasonText() { return doColumn("WITHDRAWAL_REASON_TEXT"); }
         /**
-         * DISPLAY_ORDER: {UQ, NotNull, INTEGER(10)}
+         * (表示順)DISPLAY_ORDER: {UQ, NotNull, INT(10)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnDisplayOrder() { return doColumn("DISPLAY_ORDER"); }
@@ -445,6 +444,13 @@ public class BsWithdrawalReasonCB extends AbstractConditionBean {
      */
     public void orScopeQueryAndPart(AndQuery<WithdrawalReasonCB> andCBLambda) {
         xorSQAP((WithdrawalReasonCB)this, andCBLambda);
+    }
+
+    // ===================================================================================
+    //                                                                       Cursor Select
+    //                                                                       =============
+    public void customizeCursorSelect(SVOptionCall<CursorSelectOption> opLambda) {
+        doAcceptCursorSelectOption(opLambda);
     }
 
     // ===================================================================================

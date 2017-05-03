@@ -15,20 +15,6 @@
  */
 package org.todoapp.mylasta.direction;
 
-import javax.annotation.Resource;
-
-import org.todoapp.mylasta.direction.sponsor.TodoappActionAdjustmentProvider;
-import org.todoapp.mylasta.direction.sponsor.TodoappApiFailureHook;
-import org.todoapp.mylasta.direction.sponsor.TodoappCookieResourceProvider;
-import org.todoapp.mylasta.direction.sponsor.TodoappCurtainBeforeHook;
-import org.todoapp.mylasta.direction.sponsor.TodoappJsonResourceProvider;
-import org.todoapp.mylasta.direction.sponsor.TodoappListedClassificationProvider;
-import org.todoapp.mylasta.direction.sponsor.TodoappMailDeliveryDepartmentCreator;
-import org.todoapp.mylasta.direction.sponsor.TodoappMultipartRequestHandler;
-import org.todoapp.mylasta.direction.sponsor.TodoappSecurityResourceProvider;
-import org.todoapp.mylasta.direction.sponsor.TodoappTimeResourceProvider;
-import org.todoapp.mylasta.direction.sponsor.TodoappUserLocaleProcessProvider;
-import org.todoapp.mylasta.direction.sponsor.TodoappUserTimeZoneProcessProvider;
 import org.lastaflute.core.direction.CachedFwAssistantDirector;
 import org.lastaflute.core.direction.CurtainBeforeHook;
 import org.lastaflute.core.direction.FwAssistDirection;
@@ -49,6 +35,20 @@ import org.lastaflute.web.ruts.renderer.HtmlRenderingProvider;
 import org.lastaflute.web.servlet.cookie.CookieResourceProvider;
 import org.lastaflute.web.servlet.request.UserLocaleProcessProvider;
 import org.lastaflute.web.servlet.request.UserTimeZoneProcessProvider;
+import org.todoapp.mylasta.direction.sponsor.TodoappActionAdjustmentProvider;
+import org.todoapp.mylasta.direction.sponsor.TodoappApiFailureHook;
+import org.todoapp.mylasta.direction.sponsor.TodoappCookieResourceProvider;
+import org.todoapp.mylasta.direction.sponsor.TodoappCurtainBeforeHook;
+import org.todoapp.mylasta.direction.sponsor.TodoappJsonResourceProvider;
+import org.todoapp.mylasta.direction.sponsor.TodoappListedClassificationProvider;
+import org.todoapp.mylasta.direction.sponsor.TodoappMailDeliveryDepartmentCreator;
+import org.todoapp.mylasta.direction.sponsor.TodoappMultipartRequestHandler;
+import org.todoapp.mylasta.direction.sponsor.TodoappSecurityResourceProvider;
+import org.todoapp.mylasta.direction.sponsor.TodoappTimeResourceProvider;
+import org.todoapp.mylasta.direction.sponsor.TodoappUserLocaleProcessProvider;
+import org.todoapp.mylasta.direction.sponsor.TodoappUserTimeZoneProcessProvider;
+
+import javax.annotation.Resource;
 
 /**
  * @author jflute
@@ -98,7 +98,7 @@ public class TodoappFwAssistantDirector extends CachedFwAssistantDirector {
     }
 
     protected SecurityResourceProvider createSecurityResourceProvider() { // #change_it_first
-        final InvertibleCryptographer inver = InvertibleCryptographer.createAesCipher("todoapp:dockside:");
+        final InvertibleCryptographer inver = InvertibleCryptographer.createAesCipher("dancingdp:mythica:");
         final OneWayCryptographer oneWay = OneWayCryptographer.createSha256Cryptographer();
         return new TodoappSecurityResourceProvider(inver, oneWay);
     }
@@ -150,7 +150,7 @@ public class TodoappFwAssistantDirector extends CachedFwAssistantDirector {
     }
 
     protected CookieResourceProvider createCookieResourceProvider() { // #change_it_first
-        final InvertibleCryptographer cr = InvertibleCryptographer.createAesCipher("dockside:todoapp:");
+        final InvertibleCryptographer cr = InvertibleCryptographer.createAesCipher("dancingdp:mythica:");
         return new TodoappCookieResourceProvider(config, cr);
     }
 

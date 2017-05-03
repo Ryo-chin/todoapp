@@ -27,7 +27,6 @@ import org.dbflute.cbean.scoping.*;
 import org.dbflute.dbmeta.DBMetaProvider;
 import org.dbflute.twowaysql.factory.SqlAnalyzerFactory;
 import org.dbflute.twowaysql.style.BoundDateDisplayTimeZoneProvider;
-import org.todoapp.dbflute.allcommon.CDef;
 import org.todoapp.dbflute.allcommon.DBFluteConfig;
 import org.todoapp.dbflute.allcommon.DBMetaInstanceHandler;
 import org.todoapp.dbflute.allcommon.ImplementedInvokerAssistant;
@@ -96,19 +95,19 @@ public class BsProductStatusCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param productStatusCode (商品ステータスコード): PK, NotNull, CHAR(3), classification=ProductStatus. (NotNull)
+     * @param productStatusCode (商品ステータスコード): PK, NotNull, CHAR(3). (NotNull)
      * @return this. (NotNull)
      */
-    public ProductStatusCB acceptPK(CDef.ProductStatus productStatusCode) {
+    public ProductStatusCB acceptPK(String productStatusCode) {
         assertObjectNotNull("productStatusCode", productStatusCode);
         BsProductStatusCB cb = this;
-        cb.query().setProductStatusCode_Equal_AsProductStatus(productStatusCode);
+        cb.query().setProductStatusCode_Equal(productStatusCode);
         return (ProductStatusCB)this;
     }
 
     /**
      * Accept the query condition of unique key as equal.
-     * @param displayOrder (表示順): UQ, NotNull, INTEGER(10). (NotNull)
+     * @param displayOrder (表示順): UQ, NotNull, INT(10). (NotNull)
      * @return this. (NotNull)
      */
     public ProductStatusCB acceptUniqueOf(Integer displayOrder) {
@@ -311,7 +310,7 @@ public class BsProductStatusCB extends AbstractConditionBean {
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * (商品ステータスコード)PRODUCT_STATUS_CODE: {PK, NotNull, CHAR(3), classification=ProductStatus}
+         * (商品ステータスコード)PRODUCT_STATUS_CODE: {PK, NotNull, CHAR(3)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnProductStatusCode() { return doColumn("PRODUCT_STATUS_CODE"); }
@@ -321,7 +320,7 @@ public class BsProductStatusCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnProductStatusName() { return doColumn("PRODUCT_STATUS_NAME"); }
         /**
-         * (表示順)DISPLAY_ORDER: {UQ, NotNull, INTEGER(10)}
+         * (表示順)DISPLAY_ORDER: {UQ, NotNull, INT(10)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnDisplayOrder() { return doColumn("DISPLAY_ORDER"); }
@@ -445,6 +444,13 @@ public class BsProductStatusCB extends AbstractConditionBean {
      */
     public void orScopeQueryAndPart(AndQuery<ProductStatusCB> andCBLambda) {
         xorSQAP((ProductStatusCB)this, andCBLambda);
+    }
+
+    // ===================================================================================
+    //                                                                       Cursor Select
+    //                                                                       =============
+    public void customizeCursorSelect(SVOptionCall<CursorSelectOption> opLambda) {
+        doAcceptCursorSelectOption(opLambda);
     }
 
     // ===================================================================================

@@ -25,7 +25,6 @@ import org.dbflute.dbmeta.accessory.DomainEntity;
 import org.dbflute.optional.OptionalEntity;
 import org.todoapp.dbflute.allcommon.EntityDefinedCommonColumn;
 import org.todoapp.dbflute.allcommon.DBMetaInstanceHandler;
-import org.todoapp.dbflute.allcommon.CDef;
 import org.todoapp.dbflute.exentity.*;
 
 /**
@@ -97,7 +96,7 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** PRODUCT_ID: {PK, ID, NotNull, INTEGER(10)} */
+    /** (商品ID)PRODUCT_ID: {PK, ID, NotNull, INT(10)} */
     protected Integer _productId;
 
     /** (商品名称)PRODUCT_NAME: {IX, NotNull, VARCHAR(50)} */
@@ -106,28 +105,28 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     /** (商品ハンドルコード)PRODUCT_HANDLE_CODE: {UQ, NotNull, VARCHAR(100)} */
     protected String _productHandleCode;
 
-    /** PRODUCT_CATEGORY_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_CATEGORY} */
+    /** (商品カテゴリコード)PRODUCT_CATEGORY_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_CATEGORY} */
     protected String _productCategoryCode;
 
-    /** PRODUCT_STATUS_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_STATUS, classification=ProductStatus} */
+    /** (商品ステータスコード)PRODUCT_STATUS_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_STATUS} */
     protected String _productStatusCode;
 
-    /** (定価)REGULAR_PRICE: {NotNull, INTEGER(10)} */
+    /** (定価)REGULAR_PRICE: {NotNull, INT(10)} */
     protected Integer _regularPrice;
 
-    /** REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)} */
+    /** (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)} */
     protected java.time.LocalDateTime _registerDatetime;
 
-    /** REGISTER_USER: {NotNull, VARCHAR(200)} */
+    /** (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)} */
     protected String _registerUser;
 
-    /** UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)} */
+    /** (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)} */
     protected java.time.LocalDateTime _updateDatetime;
 
-    /** UPDATE_USER: {NotNull, VARCHAR(200)} */
+    /** (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)} */
     protected String _updateUser;
 
-    /** VERSION_NO: {NotNull, BIGINT(19)} */
+    /** (バージョン番号)VERSION_NO: {NotNull, BIGINT(19)} */
     protected Long _versionNo;
 
     // ===================================================================================
@@ -161,93 +160,6 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("productHandleCode");
         setProductHandleCode(productHandleCode);
-    }
-
-    // ===================================================================================
-    //                                                             Classification Property
-    //                                                             =======================
-    /**
-     * Get the value of productStatusCode as the classification of ProductStatus. <br>
-     * PRODUCT_STATUS_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_STATUS, classification=ProductStatus} <br>
-     * status for product
-     * <p>It's treated as case insensitive and if the code value is null, it returns null.</p>
-     * @return The instance of classification definition (as ENUM type). (NullAllowed: when the column value is null)
-     */
-    public CDef.ProductStatus getProductStatusCodeAsProductStatus() {
-        return CDef.ProductStatus.codeOf(getProductStatusCode());
-    }
-
-    /**
-     * Set the value of productStatusCode as the classification of ProductStatus. <br>
-     * PRODUCT_STATUS_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_STATUS, classification=ProductStatus} <br>
-     * status for product
-     * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, null value is set to the column)
-     */
-    public void setProductStatusCodeAsProductStatus(CDef.ProductStatus cdef) {
-        setProductStatusCode(cdef != null ? cdef.code() : null);
-    }
-
-    // ===================================================================================
-    //                                                              Classification Setting
-    //                                                              ======================
-    /**
-     * Set the value of productStatusCode as OnSaleProduction (ONS). <br>
-     * OnSaleProduction
-     */
-    public void setProductStatusCode_OnSaleProduction() {
-        setProductStatusCodeAsProductStatus(CDef.ProductStatus.OnSaleProduction);
-    }
-
-    /**
-     * Set the value of productStatusCode as ProductionStop (PST). <br>
-     * ProductionStop
-     */
-    public void setProductStatusCode_ProductionStop() {
-        setProductStatusCodeAsProductStatus(CDef.ProductStatus.ProductionStop);
-    }
-
-    /**
-     * Set the value of productStatusCode as SaleStop (SST). <br>
-     * SaleStop
-     */
-    public void setProductStatusCode_SaleStop() {
-        setProductStatusCodeAsProductStatus(CDef.ProductStatus.SaleStop);
-    }
-
-    // ===================================================================================
-    //                                                        Classification Determination
-    //                                                        ============================
-    /**
-     * Is the value of productStatusCode OnSaleProduction? <br>
-     * OnSaleProduction
-     * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
-     * @return The determination, true or false.
-     */
-    public boolean isProductStatusCodeOnSaleProduction() {
-        CDef.ProductStatus cdef = getProductStatusCodeAsProductStatus();
-        return cdef != null ? cdef.equals(CDef.ProductStatus.OnSaleProduction) : false;
-    }
-
-    /**
-     * Is the value of productStatusCode ProductionStop? <br>
-     * ProductionStop
-     * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
-     * @return The determination, true or false.
-     */
-    public boolean isProductStatusCodeProductionStop() {
-        CDef.ProductStatus cdef = getProductStatusCodeAsProductStatus();
-        return cdef != null ? cdef.equals(CDef.ProductStatus.ProductionStop) : false;
-    }
-
-    /**
-     * Is the value of productStatusCode SaleStop? <br>
-     * SaleStop
-     * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
-     * @return The determination, true or false.
-     */
-    public boolean isProductStatusCodeSaleStop() {
-        CDef.ProductStatus cdef = getProductStatusCodeAsProductStatus();
-        return cdef != null ? cdef.equals(CDef.ProductStatus.SaleStop) : false;
     }
 
     // ===================================================================================
@@ -404,7 +316,7 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] PRODUCT_ID: {PK, ID, NotNull, INTEGER(10)} <br>
+     * [get] (商品ID)PRODUCT_ID: {PK, ID, NotNull, INT(10)} <br>
      * @return The value of the column 'PRODUCT_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getProductId() {
@@ -413,7 +325,7 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [set] PRODUCT_ID: {PK, ID, NotNull, INTEGER(10)} <br>
+     * [set] (商品ID)PRODUCT_ID: {PK, ID, NotNull, INT(10)} <br>
      * @param productId The value of the column 'PRODUCT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setProductId(Integer productId) {
@@ -464,7 +376,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [get] PRODUCT_CATEGORY_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_CATEGORY} <br>
+     * [get] (商品カテゴリコード)PRODUCT_CATEGORY_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_CATEGORY} <br>
+     * 自分のテーブルの別のレコードからも参照される。
      * @return The value of the column 'PRODUCT_CATEGORY_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getProductCategoryCode() {
@@ -473,7 +386,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [set] PRODUCT_CATEGORY_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_CATEGORY} <br>
+     * [set] (商品カテゴリコード)PRODUCT_CATEGORY_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_CATEGORY} <br>
+     * 自分のテーブルの別のレコードからも参照される。
      * @param productCategoryCode The value of the column 'PRODUCT_CATEGORY_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setProductCategoryCode(String productCategoryCode) {
@@ -482,7 +396,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [get] PRODUCT_STATUS_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_STATUS, classification=ProductStatus} <br>
+     * [get] (商品ステータスコード)PRODUCT_STATUS_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_STATUS} <br>
+     * 商品ステータスを識別するコード。
      * @return The value of the column 'PRODUCT_STATUS_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getProductStatusCode() {
@@ -491,17 +406,17 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [set] PRODUCT_STATUS_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_STATUS, classification=ProductStatus} <br>
+     * [set] (商品ステータスコード)PRODUCT_STATUS_CODE: {IX, NotNull, CHAR(3), FK to PRODUCT_STATUS} <br>
+     * 商品ステータスを識別するコード。
      * @param productStatusCode The value of the column 'PRODUCT_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
-    protected void setProductStatusCode(String productStatusCode) {
-        checkClassificationCode("PRODUCT_STATUS_CODE", CDef.DefMeta.ProductStatus, productStatusCode);
+    public void setProductStatusCode(String productStatusCode) {
         registerModifiedProperty("productStatusCode");
         _productStatusCode = productStatusCode;
     }
 
     /**
-     * [get] (定価)REGULAR_PRICE: {NotNull, INTEGER(10)} <br>
+     * [get] (定価)REGULAR_PRICE: {NotNull, INT(10)} <br>
      * @return The value of the column 'REGULAR_PRICE'. (basically NotNull if selected: for the constraint)
      */
     public Integer getRegularPrice() {
@@ -510,7 +425,7 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [set] (定価)REGULAR_PRICE: {NotNull, INTEGER(10)} <br>
+     * [set] (定価)REGULAR_PRICE: {NotNull, INT(10)} <br>
      * @param regularPrice The value of the column 'REGULAR_PRICE'. (basically NotNull if update: for the constraint)
      */
     public void setRegularPrice(Integer regularPrice) {
@@ -519,7 +434,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [get] REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)} <br>
+     * [get] (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
+     * レコードが登録された日時
      * @return The value of the column 'REGISTER_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -528,7 +444,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [set] REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)} <br>
+     * [set] (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)} <br>
+     * レコードが登録された日時
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -537,7 +454,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [get] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
+     * [get] (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)} <br>
+     * レコードを登録したユーザー
      * @return The value of the column 'REGISTER_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getRegisterUser() {
@@ -546,7 +464,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [set] REGISTER_USER: {NotNull, VARCHAR(200)} <br>
+     * [set] (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)} <br>
+     * レコードを登録したユーザー
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
@@ -555,7 +474,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [get] UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)} <br>
+     * [get] (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
+     * レコードが(最後に)更新された日時
      * @return The value of the column 'UPDATE_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -564,7 +484,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [set] UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)} <br>
+     * [set] (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)} <br>
+     * レコードが(最後に)更新された日時
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {
@@ -573,7 +494,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [get] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
+     * [get] (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)} <br>
+     * レコードを(最後に)更新したユーザー
      * @return The value of the column 'UPDATE_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getUpdateUser() {
@@ -582,7 +504,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [set] UPDATE_USER: {NotNull, VARCHAR(200)} <br>
+     * [set] (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)} <br>
+     * レコードを(最後に)更新したユーザー
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
@@ -591,7 +514,8 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [get] VERSION_NO: {NotNull, BIGINT(19)} <br>
+     * [get] (バージョン番号)VERSION_NO: {NotNull, BIGINT(19)} <br>
+     * 排他制御用、更新されるごとにインクリメントされる
      * @return The value of the column 'VERSION_NO'. (basically NotNull if selected: for the constraint)
      */
     public Long getVersionNo() {
@@ -600,19 +524,12 @@ public abstract class BsProduct extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [set] VERSION_NO: {NotNull, BIGINT(19)} <br>
+     * [set] (バージョン番号)VERSION_NO: {NotNull, BIGINT(19)} <br>
+     * 排他制御用、更新されるごとにインクリメントされる
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {
         registerModifiedProperty("versionNo");
         _versionNo = versionNo;
-    }
-
-    /**
-     * For framework so basically DON'T use this method.
-     * @param productStatusCode The value of the column 'PRODUCT_STATUS_CODE'. (basically NotNull if update: for the constraint)
-     */
-    public void mynativeMappingProductStatusCode(String productStatusCode) {
-        setProductStatusCode(productStatusCode);
     }
 }

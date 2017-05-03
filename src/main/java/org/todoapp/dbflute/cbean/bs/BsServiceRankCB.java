@@ -27,7 +27,6 @@ import org.dbflute.cbean.scoping.*;
 import org.dbflute.dbmeta.DBMetaProvider;
 import org.dbflute.twowaysql.factory.SqlAnalyzerFactory;
 import org.dbflute.twowaysql.style.BoundDateDisplayTimeZoneProvider;
-import org.todoapp.dbflute.allcommon.CDef;
 import org.todoapp.dbflute.allcommon.DBFluteConfig;
 import org.todoapp.dbflute.allcommon.DBMetaInstanceHandler;
 import org.todoapp.dbflute.allcommon.ImplementedInvokerAssistant;
@@ -96,19 +95,19 @@ public class BsServiceRankCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param serviceRankCode (サービスランクコード): PK, NotNull, CHAR(3), classification=ServiceRank. (NotNull)
+     * @param serviceRankCode (サービスランクコード): PK, NotNull, CHAR(3). (NotNull)
      * @return this. (NotNull)
      */
-    public ServiceRankCB acceptPK(CDef.ServiceRank serviceRankCode) {
+    public ServiceRankCB acceptPK(String serviceRankCode) {
         assertObjectNotNull("serviceRankCode", serviceRankCode);
         BsServiceRankCB cb = this;
-        cb.query().setServiceRankCode_Equal_AsServiceRank(serviceRankCode);
+        cb.query().setServiceRankCode_Equal(serviceRankCode);
         return (ServiceRankCB)this;
     }
 
     /**
      * Accept the query condition of unique key as equal.
-     * @param displayOrder (表示順): UQ, NotNull, INTEGER(10). (NotNull)
+     * @param displayOrder (表示順): UQ, NotNull, INT(10). (NotNull)
      * @return this. (NotNull)
      */
     public ServiceRankCB acceptUniqueOf(Integer displayOrder) {
@@ -311,7 +310,7 @@ public class BsServiceRankCB extends AbstractConditionBean {
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * (サービスランクコード)SERVICE_RANK_CODE: {PK, NotNull, CHAR(3), classification=ServiceRank}
+         * (サービスランクコード)SERVICE_RANK_CODE: {PK, NotNull, CHAR(3)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnServiceRankCode() { return doColumn("SERVICE_RANK_CODE"); }
@@ -326,7 +325,7 @@ public class BsServiceRankCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnServicePointIncidence() { return doColumn("SERVICE_POINT_INCIDENCE"); }
         /**
-         * (新規受け入れ可能フラグ)NEW_ACCEPTABLE_FLG: {NotNull, INTEGER(10), classification=Flg}
+         * (新規受け入れ可能フラグ)NEW_ACCEPTABLE_FLG: {NotNull, INT(10), classification=Flg}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnNewAcceptableFlg() { return doColumn("NEW_ACCEPTABLE_FLG"); }
@@ -336,7 +335,7 @@ public class BsServiceRankCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnDescription() { return doColumn("DESCRIPTION"); }
         /**
-         * (表示順)DISPLAY_ORDER: {UQ, NotNull, INTEGER(10)}
+         * (表示順)DISPLAY_ORDER: {UQ, NotNull, INT(10)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnDisplayOrder() { return doColumn("DISPLAY_ORDER"); }
@@ -460,6 +459,13 @@ public class BsServiceRankCB extends AbstractConditionBean {
      */
     public void orScopeQueryAndPart(AndQuery<ServiceRankCB> andCBLambda) {
         xorSQAP((ServiceRankCB)this, andCBLambda);
+    }
+
+    // ===================================================================================
+    //                                                                       Cursor Select
+    //                                                                       =============
+    public void customizeCursorSelect(SVOptionCall<CursorSelectOption> opLambda) {
+        doAcceptCursorSelectOption(opLambda);
     }
 
     // ===================================================================================

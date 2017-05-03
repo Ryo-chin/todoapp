@@ -112,18 +112,316 @@ p.tablecount {
 </head>
 
 <body>
-<h1>History for todoappdb (h2)</h1>
+<h1>History for todoappdb (mysql)</h1>
 <div class="navilinkarea">
 <p class="sisterlink"><a href="./schema-todoappdb.html">to SchemaHTML</a></p>
 <p class="sistersublink"><a href="./properties-todoappdb.html">to PropertiesHTML</a></p>
 </div>
 
 <div class="section">
+	<h2><span class="dt">Diff Date: </span>2017/05/03 23:57:57</h2>
+	<p class="tablecount"><span class="dt">table count: </span>16&nbsp;-&gt;&nbsp;17</p>
+
+	<h3>Add Table</h3>
+	<ul class="table-content">
+		<li><a href="./schema-todoappdb.html#task">TASK</a></li>
+	</ul>
+	<h3>Change Table</h3>
+	<div class="table-content">
+		<h4><a href="./schema-todoappdb.html#member">MEMBER</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dd><span>Default</span>NEXT&nbsp;VALUE&nbsp;FOR&nbsp;PUBLIC.SYSTEM_SEQUENCE_F45906CC_5625_4750_B42A_F11D38D588C8&nbsp;-&gt;&nbsp;null</dd>
+				<dt>FORMALIZED_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>BIRTHDATE</dt>
+				<dd><span>Size</span>8&nbsp;-&gt;&nbsp;10</dd>
+				<dt>REGISTER_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>UPDATE_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+		</div>
+		<h4><a href="./schema-todoappdb.html#member_address">MEMBER_ADDRESS</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_ADDRESS_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dd><span>Default</span>NEXT&nbsp;VALUE&nbsp;FOR&nbsp;PUBLIC.SYSTEM_SEQUENCE_4C955689_D641_4C1E_834F_8CB6CD6BB144&nbsp;-&gt;&nbsp;null</dd>
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>VALID_BEGIN_DATE</dt>
+				<dd><span>Size</span>8&nbsp;-&gt;&nbsp;10</dd>
+				<dt>VALID_END_DATE</dt>
+				<dd><span>Size</span>8&nbsp;-&gt;&nbsp;10</dd>
+				<dt>REGION_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>REGISTER_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>UPDATE_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+			<h5>Delete Index</h5>
+			<ul class="column-content">
+				<li>FK_MEMBER_ADDRESS_MEMBER_INDEX_B</li>
+			</ul>
+		</div>
+		<h4><a href="./schema-todoappdb.html#member_following">MEMBER_FOLLOWING</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_FOLLOWING_ID</dt>
+				<dd><span>Default</span>NEXT&nbsp;VALUE&nbsp;FOR&nbsp;PUBLIC.SYSTEM_SEQUENCE_9080B8EA_79EE_48F3_BD9A_8D542E8534DA&nbsp;-&gt;&nbsp;null</dd>
+				<dt>MY_MEMBER_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>YOUR_MEMBER_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>FOLLOW_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+			<h5>Delete Index</h5>
+			<ul class="column-content">
+				<li>FK_MEMBER_FOLLOWING_MY_MEMBER_INDEX_B</li>
+				<li>IX_MEMBER_FOLLOWING_UNIQUE_REVERSE</li>
+			</ul>
+		</div>
+		<h4><a href="./schema-todoappdb.html#member_login">MEMBER_LOGIN</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_LOGIN_ID</dt>
+				<dd><span>Default</span>NEXT&nbsp;VALUE&nbsp;FOR&nbsp;PUBLIC.SYSTEM_SEQUENCE_09E23A8B_4D07_44F1_B40C_6438BEEAE269&nbsp;-&gt;&nbsp;null</dd>
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>LOGIN_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>MOBILE_LOGIN_FLG</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+			</dl>
+			<h5>Delete Index</h5>
+			<ul class="column-content">
+				<li>FK_MEMBER_LOGIN_MEMBER_INDEX_B</li>
+			</ul>
+		</div>
+		<h4><a href="./schema-todoappdb.html#member_security">MEMBER_SECURITY</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>REMINDER_USE_COUNT</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>REGISTER_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>UPDATE_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+		</div>
+		<h4><a href="./schema-todoappdb.html#member_service">MEMBER_SERVICE</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_SERVICE_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dd><span>Default</span>NEXT&nbsp;VALUE&nbsp;FOR&nbsp;PUBLIC.SYSTEM_SEQUENCE_A64A060E_50B6_4F0F_B610_4D1390E5F0AA&nbsp;-&gt;&nbsp;null</dd>
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>SERVICE_POINT_COUNT</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>REGISTER_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>UPDATE_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+			<h5>Delete Index</h5>
+			<ul class="column-content">
+				<li>FK_MEMBER_SERVICE_MEMBER_INDEX_6</li>
+			</ul>
+		</div>
+		<h4><a href="./schema-todoappdb.html#member_status">MEMBER_STATUS</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>DISPLAY_ORDER</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+			</dl>
+		</div>
+		<h4><a href="./schema-todoappdb.html#member_withdrawal">MEMBER_WITHDRAWAL</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>WITHDRAWAL_REASON_INPUT_TEXT</dt>
+				<dd><span>Type</span>CLOB&nbsp;-&gt;&nbsp;TEXT</dd>
+				<dd><span>Size</span>2147483647&nbsp;-&gt;&nbsp;65535</dd>
+				<dt>WITHDRAWAL_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>REGISTER_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>UPDATE_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+		</div>
+		<h4><a href="./schema-todoappdb.html#product">PRODUCT</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>PRODUCT_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dd><span>Default</span>NEXT&nbsp;VALUE&nbsp;FOR&nbsp;PUBLIC.SYSTEM_SEQUENCE_3AA7C3E3_9A9C_4E0F_BBCB_CECB6743046F&nbsp;-&gt;&nbsp;null</dd>
+				<dt>REGULAR_PRICE</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>REGISTER_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>UPDATE_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+		</div>
+		<h4><a href="./schema-todoappdb.html#product_category">PRODUCT_CATEGORY</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+		</div>
+		<h4><a href="./schema-todoappdb.html#product_status">PRODUCT_STATUS</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>DISPLAY_ORDER</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+			</dl>
+		</div>
+		<h4><a href="./schema-todoappdb.html#purchase">PURCHASE</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>PURCHASE_ID</dt>
+				<dd><span>Default</span>NEXT&nbsp;VALUE&nbsp;FOR&nbsp;PUBLIC.SYSTEM_SEQUENCE_87915344_338F_4DF9_AA2E_4DC9395D7C80&nbsp;-&gt;&nbsp;null</dd>
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>PRODUCT_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>PURCHASE_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>PURCHASE_COUNT</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>PURCHASE_PRICE</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>PAYMENT_COMPLETE_FLG</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>REGISTER_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>UPDATE_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+		</div>
+		<h4><a href="./schema-todoappdb.html#purchase_payment">PURCHASE_PAYMENT</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>PURCHASE_PAYMENT_ID</dt>
+				<dd><span>Default</span>NEXT&nbsp;VALUE&nbsp;FOR&nbsp;PUBLIC.SYSTEM_SEQUENCE_182CCD8F_6A84_441E_9ACE_D3A4DB980C46&nbsp;-&gt;&nbsp;null</dd>
+				<dt>PAYMENT_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>REGISTER_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>UPDATE_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+		</div>
+		<h4><a href="./schema-todoappdb.html#region">REGION</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>REGION_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+			</dl>
+		</div>
+		<h4><a href="./schema-todoappdb.html#service_rank">SERVICE_RANK</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>NEW_ACCEPTABLE_FLG</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dt>DISPLAY_ORDER</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+			</dl>
+		</div>
+		<h4><a href="./schema-todoappdb.html#withdrawal_reason">WITHDRAWAL_REASON</a></h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;todoappdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>WITHDRAWAL_REASON_TEXT</dt>
+				<dd><span>Type</span>CLOB&nbsp;-&gt;&nbsp;TEXT</dd>
+				<dd><span>Size</span>2147483647&nbsp;-&gt;&nbsp;65535</dd>
+				<dt>DISPLAY_ORDER</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+<div class="section">
 	<h2><span class="dt">Diff Date: </span>2015/12/02 23:48:43</h2>
 
 	<h3>Change Table</h3>
 	<div class="table-content">
-		<h4><a href="./schema-todoappdb.html#member">MEMBER</a></h4>
+		<h4>MEMBER</h4>
 		<div class="change-table-content">
 			<h5>Change Column</h5>
 			<dl class="column-content">

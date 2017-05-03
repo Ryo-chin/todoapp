@@ -28,7 +28,6 @@ import org.dbflute.cbean.result.*;
 import org.dbflute.exception.*;
 import org.dbflute.optional.OptionalEntity;
 import org.dbflute.outsidesql.executor.*;
-import org.todoapp.dbflute.allcommon.CDef;
 import org.todoapp.dbflute.exbhv.*;
 import org.todoapp.dbflute.bsbhv.loader.*;
 import org.todoapp.dbflute.exentity.*;
@@ -173,36 +172,36 @@ public abstract class BsServiceRankBhv extends AbstractBehaviorWritable<ServiceR
 
     /**
      * Select the entity by the primary-key value.
-     * @param serviceRankCode (サービスランクコード): PK, NotNull, CHAR(3), classification=ServiceRank. (NotNull)
+     * @param serviceRankCode (サービスランクコード): PK, NotNull, CHAR(3). (NotNull)
      * @return The optional entity selected by the PK. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public OptionalEntity<ServiceRank> selectByPK(CDef.ServiceRank serviceRankCode) {
+    public OptionalEntity<ServiceRank> selectByPK(String serviceRankCode) {
         return facadeSelectByPK(serviceRankCode);
     }
 
-    protected OptionalEntity<ServiceRank> facadeSelectByPK(CDef.ServiceRank serviceRankCode) {
+    protected OptionalEntity<ServiceRank> facadeSelectByPK(String serviceRankCode) {
         return doSelectOptionalByPK(serviceRankCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends ServiceRank> ENTITY doSelectByPK(CDef.ServiceRank serviceRankCode, Class<? extends ENTITY> tp) {
+    protected <ENTITY extends ServiceRank> ENTITY doSelectByPK(String serviceRankCode, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(serviceRankCode), tp);
     }
 
-    protected <ENTITY extends ServiceRank> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.ServiceRank serviceRankCode, Class<? extends ENTITY> tp) {
+    protected <ENTITY extends ServiceRank> OptionalEntity<ENTITY> doSelectOptionalByPK(String serviceRankCode, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(serviceRankCode, tp), serviceRankCode);
     }
 
-    protected ServiceRankCB xprepareCBAsPK(CDef.ServiceRank serviceRankCode) {
+    protected ServiceRankCB xprepareCBAsPK(String serviceRankCode) {
         assertObjectNotNull("serviceRankCode", serviceRankCode);
         return newConditionBean().acceptPK(serviceRankCode);
     }
 
     /**
      * Select the entity by the unique-key value.
-     * @param displayOrder (表示順): UQ, NotNull, INTEGER(10). (NotNull)
+     * @param displayOrder (表示順): UQ, NotNull, INT(10). (NotNull)
      * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.

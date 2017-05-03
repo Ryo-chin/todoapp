@@ -96,7 +96,7 @@ public class BsMemberSecurityCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param memberId (会員ID): PK, NotNull, INTEGER(10), FK to MEMBER. (NotNull)
+     * @param memberId (会員ID): PK, NotNull, INT(10), FK to MEMBER. (NotNull)
      * @return this. (NotNull)
      */
     public MemberSecurityCB acceptPK(Integer memberId) {
@@ -326,7 +326,7 @@ public class BsMemberSecurityCB extends AbstractConditionBean {
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * (会員ID)MEMBER_ID: {PK, NotNull, INTEGER(10), FK to MEMBER}
+         * (会員ID)MEMBER_ID: {PK, NotNull, INT(10), FK to MEMBER}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
@@ -346,32 +346,32 @@ public class BsMemberSecurityCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnReminderAnswer() { return doColumn("REMINDER_ANSWER"); }
         /**
-         * (リマインダ利用回数)REMINDER_USE_COUNT: {NotNull, INTEGER(10)}
+         * (リマインダ利用回数)REMINDER_USE_COUNT: {NotNull, INT(10)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnReminderUseCount() { return doColumn("REMINDER_USE_COUNT"); }
         /**
-         * REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+         * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnRegisterDatetime() { return doColumn("REGISTER_DATETIME"); }
         /**
-         * REGISTER_USER: {NotNull, VARCHAR(200)}
+         * (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnRegisterUser() { return doColumn("REGISTER_USER"); }
         /**
-         * UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+         * (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnUpdateDatetime() { return doColumn("UPDATE_DATETIME"); }
         /**
-         * UPDATE_USER: {NotNull, VARCHAR(200)}
+         * (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnUpdateUser() { return doColumn("UPDATE_USER"); }
         /**
-         * VERSION_NO: {NotNull, BIGINT(19)}
+         * (バージョン番号)VERSION_NO: {NotNull, BIGINT(19)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnVersionNo() { return doColumn("VERSION_NO"); }
@@ -498,6 +498,13 @@ public class BsMemberSecurityCB extends AbstractConditionBean {
      */
     public void orScopeQueryAndPart(AndQuery<MemberSecurityCB> andCBLambda) {
         xorSQAP((MemberSecurityCB)this, andCBLambda);
+    }
+
+    // ===================================================================================
+    //                                                                       Cursor Select
+    //                                                                       =============
+    public void customizeCursorSelect(SVOptionCall<CursorSelectOption> opLambda) {
+        doAcceptCursorSelectOption(opLambda);
     }
 
     // ===================================================================================

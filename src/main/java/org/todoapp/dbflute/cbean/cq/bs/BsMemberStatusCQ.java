@@ -184,14 +184,14 @@ public class BsMemberStatusCQ extends AbstractBsMemberStatusCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (表示順)DISPLAY_ORDER: {UQ, NotNull, INTEGER(10)}
+     * (表示順)DISPLAY_ORDER: {UQ, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsMemberStatusCQ addOrderBy_DisplayOrder_Asc() { regOBA("DISPLAY_ORDER"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (表示順)DISPLAY_ORDER: {UQ, NotNull, INTEGER(10)}
+     * (表示順)DISPLAY_ORDER: {UQ, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsMemberStatusCQ addOrderBy_DisplayOrder_Desc() { regOBD("DISPLAY_ORDER"); return this; }

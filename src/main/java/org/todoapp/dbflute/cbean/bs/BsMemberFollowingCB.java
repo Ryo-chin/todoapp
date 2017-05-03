@@ -108,8 +108,8 @@ public class BsMemberFollowingCB extends AbstractConditionBean {
 
     /**
      * Accept the query condition of unique key as equal.
-     * @param myMemberId (わたし): UQ+, IX+, NotNull, INTEGER(10), FK to MEMBER. (NotNull)
-     * @param yourMemberId (あなた): +UQ, IX+, NotNull, INTEGER(10), FK to MEMBER. (NotNull)
+     * @param myMemberId (わたし): UQ+, NotNull, INT(10), FK to MEMBER. (NotNull)
+     * @param yourMemberId (あなた): +UQ, IX, NotNull, INT(10), FK to MEMBER. (NotNull)
      * @return this. (NotNull)
      */
     public MemberFollowingCB acceptUniqueOf(Integer myMemberId, Integer yourMemberId) {
@@ -377,17 +377,17 @@ public class BsMemberFollowingCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnMemberFollowingId() { return doColumn("MEMBER_FOLLOWING_ID"); }
         /**
-         * (わたし)MY_MEMBER_ID: {UQ+, IX+, NotNull, INTEGER(10), FK to MEMBER}
+         * (わたし)MY_MEMBER_ID: {UQ+, NotNull, INT(10), FK to MEMBER}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnMyMemberId() { return doColumn("MY_MEMBER_ID"); }
         /**
-         * (あなた)YOUR_MEMBER_ID: {+UQ, IX+, NotNull, INTEGER(10), FK to MEMBER}
+         * (あなた)YOUR_MEMBER_ID: {+UQ, IX, NotNull, INT(10), FK to MEMBER}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnYourMemberId() { return doColumn("YOUR_MEMBER_ID"); }
         /**
-         * (その瞬間)FOLLOW_DATETIME: {IX, NotNull, TIMESTAMP(23, 10)}
+         * (その瞬間)FOLLOW_DATETIME: {IX, NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnFollowDatetime() { return doColumn("FOLLOW_DATETIME"); }
@@ -542,6 +542,13 @@ public class BsMemberFollowingCB extends AbstractConditionBean {
      */
     public void orScopeQueryAndPart(AndQuery<MemberFollowingCB> andCBLambda) {
         xorSQAP((MemberFollowingCB)this, andCBLambda);
+    }
+
+    // ===================================================================================
+    //                                                                       Cursor Select
+    //                                                                       =============
+    public void customizeCursorSelect(SVOptionCall<CursorSelectOption> opLambda) {
+        doAcceptCursorSelectOption(opLambda);
     }
 
     // ===================================================================================

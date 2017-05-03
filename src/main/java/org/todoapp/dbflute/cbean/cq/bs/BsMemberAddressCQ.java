@@ -96,14 +96,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (会員住所ID)MEMBER_ADDRESS_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員住所ID)MEMBER_ADDRESS_ID: {PK, ID, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_MemberAddressId_Asc() { regOBA("MEMBER_ADDRESS_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (会員住所ID)MEMBER_ADDRESS_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員住所ID)MEMBER_ADDRESS_ID: {PK, ID, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_MemberAddressId_Desc() { regOBD("MEMBER_ADDRESS_ID"); return this; }
@@ -116,14 +116,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (会員ID)MEMBER_ID: {UQ+, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ+, NotNull, INT(10), FK to MEMBER}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (会員ID)MEMBER_ID: {UQ+, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ+, NotNull, INT(10), FK to MEMBER}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
@@ -136,14 +136,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (有効開始日)VALID_BEGIN_DATE: {+UQ, NotNull, DATE(8)}
+     * (有効開始日)VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_ValidBeginDate_Asc() { regOBA("VALID_BEGIN_DATE"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (有効開始日)VALID_BEGIN_DATE: {+UQ, NotNull, DATE(8)}
+     * (有効開始日)VALID_BEGIN_DATE: {+UQ, NotNull, DATE(10)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_ValidBeginDate_Desc() { regOBD("VALID_BEGIN_DATE"); return this; }
@@ -156,14 +156,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (有効終了日)VALID_END_DATE: {NotNull, DATE(8)}
+     * (有効終了日)VALID_END_DATE: {NotNull, DATE(10)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_ValidEndDate_Asc() { regOBA("VALID_END_DATE"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (有効終了日)VALID_END_DATE: {NotNull, DATE(8)}
+     * (有効終了日)VALID_END_DATE: {NotNull, DATE(10)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_ValidEndDate_Desc() { regOBD("VALID_END_DATE"); return this; }
@@ -196,14 +196,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (地域ID)REGION_ID: {IX, NotNull, INTEGER(10), FK to REGION, classification=Region}
+     * (地域ID)REGION_ID: {IX, NotNull, INT(10), FK to REGION}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_RegionId_Asc() { regOBA("REGION_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (地域ID)REGION_ID: {IX, NotNull, INTEGER(10), FK to REGION, classification=Region}
+     * (地域ID)REGION_ID: {IX, NotNull, INT(10), FK to REGION}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_RegionId_Desc() { regOBD("REGION_ID"); return this; }
@@ -216,14 +216,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_RegisterDatetime_Asc() { regOBA("REGISTER_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_RegisterDatetime_Desc() { regOBD("REGISTER_DATETIME"); return this; }
@@ -236,14 +236,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * REGISTER_USER: {NotNull, VARCHAR(200)}
+     * (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_RegisterUser_Asc() { regOBA("REGISTER_USER"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * REGISTER_USER: {NotNull, VARCHAR(200)}
+     * (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_RegisterUser_Desc() { regOBD("REGISTER_USER"); return this; }
@@ -256,14 +256,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_UpdateDatetime_Asc() { regOBA("UPDATE_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_UpdateDatetime_Desc() { regOBD("UPDATE_DATETIME"); return this; }
@@ -276,14 +276,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * UPDATE_USER: {NotNull, VARCHAR(200)}
+     * (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_UpdateUser_Asc() { regOBA("UPDATE_USER"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * UPDATE_USER: {NotNull, VARCHAR(200)}
+     * (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_UpdateUser_Desc() { regOBD("UPDATE_USER"); return this; }
@@ -296,14 +296,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * VERSION_NO: {NotNull, BIGINT(19)}
+     * (バージョン番号)VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_VersionNo_Asc() { regOBA("VERSION_NO"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * VERSION_NO: {NotNull, BIGINT(19)}
+     * (バージョン番号)VERSION_NO: {NotNull, BIGINT(19)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_VersionNo_Desc() { regOBD("VERSION_NO"); return this; }

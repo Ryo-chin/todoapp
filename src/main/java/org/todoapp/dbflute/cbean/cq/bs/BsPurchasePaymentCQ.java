@@ -156,14 +156,14 @@ public class BsPurchasePaymentCQ extends AbstractBsPurchasePaymentCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (支払日時)PAYMENT_DATETIME: {IX+, NotNull, TIMESTAMP(23, 10)}
+     * (支払日時)PAYMENT_DATETIME: {IX+, NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_PaymentDatetime_Asc() { regOBA("PAYMENT_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (支払日時)PAYMENT_DATETIME: {IX+, NotNull, TIMESTAMP(23, 10)}
+     * (支払日時)PAYMENT_DATETIME: {IX+, NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_PaymentDatetime_Desc() { regOBD("PAYMENT_DATETIME"); return this; }
@@ -176,14 +176,14 @@ public class BsPurchasePaymentCQ extends AbstractBsPurchasePaymentCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * (支払方法コード)PAYMENT_METHOD_CODE: {NotNull, CHAR(3), classification=PaymentMethod}
+     * (支払方法コード)PAYMENT_METHOD_CODE: {NotNull, CHAR(3)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_PaymentMethodCode_Asc() { regOBA("PAYMENT_METHOD_CODE"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (支払方法コード)PAYMENT_METHOD_CODE: {NotNull, CHAR(3), classification=PaymentMethod}
+     * (支払方法コード)PAYMENT_METHOD_CODE: {NotNull, CHAR(3)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_PaymentMethodCode_Desc() { regOBD("PAYMENT_METHOD_CODE"); return this; }
@@ -196,14 +196,14 @@ public class BsPurchasePaymentCQ extends AbstractBsPurchasePaymentCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_RegisterDatetime_Asc() { regOBA("REGISTER_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_RegisterDatetime_Desc() { regOBD("REGISTER_DATETIME"); return this; }
@@ -216,14 +216,14 @@ public class BsPurchasePaymentCQ extends AbstractBsPurchasePaymentCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * REGISTER_USER: {NotNull, VARCHAR(200)}
+     * (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_RegisterUser_Asc() { regOBA("REGISTER_USER"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * REGISTER_USER: {NotNull, VARCHAR(200)}
+     * (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_RegisterUser_Desc() { regOBD("REGISTER_USER"); return this; }
@@ -236,14 +236,14 @@ public class BsPurchasePaymentCQ extends AbstractBsPurchasePaymentCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_UpdateDatetime_Asc() { regOBA("UPDATE_DATETIME"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_UpdateDatetime_Desc() { regOBD("UPDATE_DATETIME"); return this; }
@@ -256,14 +256,14 @@ public class BsPurchasePaymentCQ extends AbstractBsPurchasePaymentCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * UPDATE_USER: {NotNull, VARCHAR(200)}
+     * (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_UpdateUser_Asc() { regOBA("UPDATE_USER"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * UPDATE_USER: {NotNull, VARCHAR(200)}
+     * (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)}
      * @return this. (NotNull)
      */
     public BsPurchasePaymentCQ addOrderBy_UpdateUser_Desc() { regOBD("UPDATE_USER"); return this; }

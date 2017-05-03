@@ -108,8 +108,8 @@ public class BsMemberLoginCB extends AbstractConditionBean {
 
     /**
      * Accept the query condition of unique key as equal.
-     * @param memberId (会員ID): UQ+, IX, NotNull, INTEGER(10), FK to MEMBER. (NotNull)
-     * @param loginDatetime (ログイン日時): +UQ, IX, NotNull, TIMESTAMP(23, 10). (NotNull)
+     * @param memberId (会員ID): UQ+, NotNull, INT(10), FK to MEMBER. (NotNull)
+     * @param loginDatetime (ログイン日時): +UQ, IX, NotNull, DATETIME(19). (NotNull)
      * @return this. (NotNull)
      */
     public MemberLoginCB acceptUniqueOf(Integer memberId, java.time.LocalDateTime loginDatetime) {
@@ -368,22 +368,22 @@ public class BsMemberLoginCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnMemberLoginId() { return doColumn("MEMBER_LOGIN_ID"); }
         /**
-         * (会員ID)MEMBER_ID: {UQ+, IX, NotNull, INTEGER(10), FK to MEMBER}
+         * (会員ID)MEMBER_ID: {UQ+, NotNull, INT(10), FK to MEMBER}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
         /**
-         * (ログイン日時)LOGIN_DATETIME: {+UQ, IX, NotNull, TIMESTAMP(23, 10)}
+         * (ログイン日時)LOGIN_DATETIME: {+UQ, IX, NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnLoginDatetime() { return doColumn("LOGIN_DATETIME"); }
         /**
-         * (モバイルログインフラグ)MOBILE_LOGIN_FLG: {NotNull, INTEGER(10), classification=Flg}
+         * (モバイルログインフラグ)MOBILE_LOGIN_FLG: {NotNull, INT(10), classification=Flg}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnMobileLoginFlg() { return doColumn("MOBILE_LOGIN_FLG"); }
         /**
-         * (ログイン時会員ステータスコード)LOGIN_MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to MEMBER_STATUS, classification=MemberStatus}
+         * (ログイン会員ステータスコード)LOGIN_MEMBER_STATUS_CODE: {IX, NotNull, CHAR(3), FK to MEMBER_STATUS, classification=MemberStatus}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnLoginMemberStatusCode() { return doColumn("LOGIN_MEMBER_STATUS_CODE"); }
@@ -538,6 +538,13 @@ public class BsMemberLoginCB extends AbstractConditionBean {
      */
     public void orScopeQueryAndPart(AndQuery<MemberLoginCB> andCBLambda) {
         xorSQAP((MemberLoginCB)this, andCBLambda);
+    }
+
+    // ===================================================================================
+    //                                                                       Cursor Select
+    //                                                                       =============
+    public void customizeCursorSelect(SVOptionCall<CursorSelectOption> opLambda) {
+        doAcceptCursorSelectOption(opLambda);
     }
 
     // ===================================================================================

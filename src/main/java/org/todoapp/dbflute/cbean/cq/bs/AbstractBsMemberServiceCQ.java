@@ -60,7 +60,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
     //                                                                               =====
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @param memberServiceId The value of memberServiceId as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberServiceId_Equal(Integer memberServiceId) {
@@ -73,7 +73,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @param memberServiceId The value of memberServiceId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberServiceId_NotEqual(Integer memberServiceId) {
@@ -86,7 +86,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @param memberServiceId The value of memberServiceId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberServiceId_GreaterThan(Integer memberServiceId) {
@@ -95,7 +95,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @param memberServiceId The value of memberServiceId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberServiceId_LessThan(Integer memberServiceId) {
@@ -104,7 +104,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @param memberServiceId The value of memberServiceId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberServiceId_GreaterEqual(Integer memberServiceId) {
@@ -113,7 +113,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @param memberServiceId The value of memberServiceId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberServiceId_LessEqual(Integer memberServiceId) {
@@ -124,7 +124,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @param minNumber The min number of memberServiceId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberServiceId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -137,7 +137,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @param minNumber The min number of memberServiceId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberServiceId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -148,7 +148,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @param memberServiceIdList The collection of memberServiceId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberServiceId_InScope(Collection<Integer> memberServiceIdList) {
@@ -161,7 +161,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      * @param memberServiceIdList The collection of memberServiceId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberServiceId_NotInScope(Collection<Integer> memberServiceIdList) {
@@ -174,13 +174,13 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      */
     public void setMemberServiceId_IsNull() { regMemberServiceId(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INTEGER(10)}
+     * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
      */
     public void setMemberServiceId_IsNotNull() { regMemberServiceId(CK_ISNN, DOBJ); }
 
@@ -189,7 +189,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @param memberId The value of memberId as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_Equal(Integer memberId) {
@@ -202,7 +202,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @param memberId The value of memberId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_NotEqual(Integer memberId) {
@@ -215,7 +215,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @param memberId The value of memberId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_GreaterThan(Integer memberId) {
@@ -224,7 +224,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @param memberId The value of memberId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_LessThan(Integer memberId) {
@@ -233,7 +233,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @param memberId The value of memberId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_GreaterEqual(Integer memberId) {
@@ -242,7 +242,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @param memberId The value of memberId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setMemberId_LessEqual(Integer memberId) {
@@ -253,7 +253,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -266,7 +266,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -277,7 +277,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @param memberIdList The collection of memberId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberId_InScope(Collection<Integer> memberIdList) {
@@ -290,7 +290,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * (会員ID)MEMBER_ID: {UQ, IX, NotNull, INTEGER(10), FK to MEMBER}
+     * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to MEMBER}
      * @param memberIdList The collection of memberId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberId_NotInScope(Collection<Integer> memberIdList) {
@@ -306,7 +306,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @param servicePointCount The value of servicePointCount as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setServicePointCount_Equal(Integer servicePointCount) {
@@ -319,7 +319,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @param servicePointCount The value of servicePointCount as notEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setServicePointCount_NotEqual(Integer servicePointCount) {
@@ -332,7 +332,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @param servicePointCount The value of servicePointCount as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setServicePointCount_GreaterThan(Integer servicePointCount) {
@@ -341,7 +341,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @param servicePointCount The value of servicePointCount as lessThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setServicePointCount_LessThan(Integer servicePointCount) {
@@ -350,7 +350,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @param servicePointCount The value of servicePointCount as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setServicePointCount_GreaterEqual(Integer servicePointCount) {
@@ -359,7 +359,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @param servicePointCount The value of servicePointCount as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setServicePointCount_LessEqual(Integer servicePointCount) {
@@ -370,7 +370,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @param minNumber The min number of servicePointCount. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of servicePointCount. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -383,7 +383,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @param minNumber The min number of servicePointCount. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of servicePointCount. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -394,7 +394,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @param servicePointCountList The collection of servicePointCount as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setServicePointCount_InScope(Collection<Integer> servicePointCountList) {
@@ -407,7 +407,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INTEGER(10)}
+     * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
      * @param servicePointCountList The collection of servicePointCount as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setServicePointCount_NotInScope(Collection<Integer> servicePointCountList) {
@@ -423,61 +423,11 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank}
+     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK}
      * @param serviceRankCode The value of serviceRankCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    protected void setServiceRankCode_Equal(String serviceRankCode) {
+    public void setServiceRankCode_Equal(String serviceRankCode) {
         doSetServiceRankCode_Equal(fRES(serviceRankCode));
-    }
-
-    /**
-     * Equal(=). As ServiceRank. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank} <br>
-     * rank of service member gets
-     * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
-     */
-    public void setServiceRankCode_Equal_AsServiceRank(CDef.ServiceRank cdef) {
-        doSetServiceRankCode_Equal(cdef != null ? cdef.code() : null);
-    }
-
-    /**
-     * Equal(=). As Platinum (PLT). And OnlyOnceRegistered. <br>
-     * PLATINUM: platinum rank
-     */
-    public void setServiceRankCode_Equal_Platinum() {
-        setServiceRankCode_Equal_AsServiceRank(CDef.ServiceRank.Platinum);
-    }
-
-    /**
-     * Equal(=). As Gold (GLD). And OnlyOnceRegistered. <br>
-     * GOLD: gold rank
-     */
-    public void setServiceRankCode_Equal_Gold() {
-        setServiceRankCode_Equal_AsServiceRank(CDef.ServiceRank.Gold);
-    }
-
-    /**
-     * Equal(=). As Silver (SIL). And OnlyOnceRegistered. <br>
-     * SILVER: silver rank
-     */
-    public void setServiceRankCode_Equal_Silver() {
-        setServiceRankCode_Equal_AsServiceRank(CDef.ServiceRank.Silver);
-    }
-
-    /**
-     * Equal(=). As Bronze (BRZ). And OnlyOnceRegistered. <br>
-     * BRONZE: bronze rank
-     */
-    public void setServiceRankCode_Equal_Bronze() {
-        setServiceRankCode_Equal_AsServiceRank(CDef.ServiceRank.Bronze);
-    }
-
-    /**
-     * Equal(=). As Plastic (PLS). And OnlyOnceRegistered. <br>
-     * PLASTIC: plastic rank
-     */
-    public void setServiceRankCode_Equal_Plastic() {
-        setServiceRankCode_Equal_AsServiceRank(CDef.ServiceRank.Plastic);
     }
 
     protected void doSetServiceRankCode_Equal(String serviceRankCode) {
@@ -486,61 +436,11 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank}
+     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK}
      * @param serviceRankCode The value of serviceRankCode as notEqual. (NullAllowed: if null (or empty), no condition)
      */
-    protected void setServiceRankCode_NotEqual(String serviceRankCode) {
+    public void setServiceRankCode_NotEqual(String serviceRankCode) {
         doSetServiceRankCode_NotEqual(fRES(serviceRankCode));
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). As ServiceRank. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank} <br>
-     * rank of service member gets
-     * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
-     */
-    public void setServiceRankCode_NotEqual_AsServiceRank(CDef.ServiceRank cdef) {
-        doSetServiceRankCode_NotEqual(cdef != null ? cdef.code() : null);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). As Platinum (PLT). And OnlyOnceRegistered. <br>
-     * PLATINUM: platinum rank
-     */
-    public void setServiceRankCode_NotEqual_Platinum() {
-        setServiceRankCode_NotEqual_AsServiceRank(CDef.ServiceRank.Platinum);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). As Gold (GLD). And OnlyOnceRegistered. <br>
-     * GOLD: gold rank
-     */
-    public void setServiceRankCode_NotEqual_Gold() {
-        setServiceRankCode_NotEqual_AsServiceRank(CDef.ServiceRank.Gold);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). As Silver (SIL). And OnlyOnceRegistered. <br>
-     * SILVER: silver rank
-     */
-    public void setServiceRankCode_NotEqual_Silver() {
-        setServiceRankCode_NotEqual_AsServiceRank(CDef.ServiceRank.Silver);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). As Bronze (BRZ). And OnlyOnceRegistered. <br>
-     * BRONZE: bronze rank
-     */
-    public void setServiceRankCode_NotEqual_Bronze() {
-        setServiceRankCode_NotEqual_AsServiceRank(CDef.ServiceRank.Bronze);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). As Plastic (PLS). And OnlyOnceRegistered. <br>
-     * PLASTIC: plastic rank
-     */
-    public void setServiceRankCode_NotEqual_Plastic() {
-        setServiceRankCode_NotEqual_AsServiceRank(CDef.ServiceRank.Plastic);
     }
 
     protected void doSetServiceRankCode_NotEqual(String serviceRankCode) {
@@ -549,21 +449,11 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank}
+     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK}
      * @param serviceRankCodeList The collection of serviceRankCode as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    protected void setServiceRankCode_InScope(Collection<String> serviceRankCodeList) {
+    public void setServiceRankCode_InScope(Collection<String> serviceRankCodeList) {
         doSetServiceRankCode_InScope(serviceRankCodeList);
-    }
-
-    /**
-     * InScope {in ('a', 'b')}. As ServiceRank. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank} <br>
-     * rank of service member gets
-     * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
-     */
-    public void setServiceRankCode_InScope_AsServiceRank(Collection<CDef.ServiceRank> cdefList) {
-        doSetServiceRankCode_InScope(cTStrL(cdefList));
     }
 
     protected void doSetServiceRankCode_InScope(Collection<String> serviceRankCodeList) {
@@ -572,25 +462,59 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank}
+     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK}
      * @param serviceRankCodeList The collection of serviceRankCode as notInScope. (NullAllowed: if null (or empty), no condition)
      */
-    protected void setServiceRankCode_NotInScope(Collection<String> serviceRankCodeList) {
+    public void setServiceRankCode_NotInScope(Collection<String> serviceRankCodeList) {
         doSetServiceRankCode_NotInScope(serviceRankCodeList);
-    }
-
-    /**
-     * NotInScope {not in ('a', 'b')}. As ServiceRank. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK, classification=ServiceRank} <br>
-     * rank of service member gets
-     * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
-     */
-    public void setServiceRankCode_NotInScope_AsServiceRank(Collection<CDef.ServiceRank> cdefList) {
-        doSetServiceRankCode_NotInScope(cTStrL(cdefList));
     }
 
     protected void doSetServiceRankCode_NotInScope(Collection<String> serviceRankCodeList) {
         regINS(CK_NINS, cTL(serviceRankCodeList), xgetCValueServiceRankCode(), "SERVICE_RANK_CODE");
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK} <br>
+     * <pre>e.g. setServiceRankCode_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param serviceRankCode The value of serviceRankCode as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setServiceRankCode_LikeSearch(String serviceRankCode, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setServiceRankCode_LikeSearch(serviceRankCode, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK} <br>
+     * <pre>e.g. setServiceRankCode_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param serviceRankCode The value of serviceRankCode as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setServiceRankCode_LikeSearch(String serviceRankCode, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(serviceRankCode), xgetCValueServiceRankCode(), "SERVICE_RANK_CODE", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK}
+     * @param serviceRankCode The value of serviceRankCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setServiceRankCode_NotLikeSearch(String serviceRankCode, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setServiceRankCode_NotLikeSearch(serviceRankCode, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (サービスランクコード)SERVICE_RANK_CODE: {IX, NotNull, CHAR(3), FK to SERVICE_RANK}
+     * @param serviceRankCode The value of serviceRankCode as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setServiceRankCode_NotLikeSearch(String serviceRankCode, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(serviceRankCode), xgetCValueServiceRankCode(), "SERVICE_RANK_CODE", likeSearchOption);
     }
 
     protected void regServiceRankCode(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueServiceRankCode(), "SERVICE_RANK_CODE"); }
@@ -598,7 +522,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @param registerDatetime The value of registerDatetime as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setRegisterDatetime_Equal(java.time.LocalDateTime registerDatetime) {
@@ -608,7 +532,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * <pre>e.g. setRegisterDatetime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of registerDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of registerDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
@@ -621,7 +545,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * <pre>e.g. setRegisterDatetime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of registerDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of registerDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
@@ -637,7 +561,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * REGISTER_USER: {NotNull, VARCHAR(200)}
+     * (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)}
      * @param registerUser The value of registerUser as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setRegisterUser_Equal(String registerUser) {
@@ -653,7 +577,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * @param updateDatetime The value of updateDatetime as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setUpdateDatetime_Equal(java.time.LocalDateTime updateDatetime) {
@@ -663,7 +587,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * <pre>e.g. setUpdateDatetime_FromTo(fromDate, toDate, op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">compareAsDate()</span>);</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of updateDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of updateDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
@@ -676,7 +600,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+     * (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)}
      * <pre>e.g. setUpdateDatetime_FromTo(fromDate, toDate, new <span style="color: #CC4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of updateDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of updateDatetime. (basically NotNull: if op.allowOneSide(), null allowed)
@@ -692,7 +616,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * UPDATE_USER: {NotNull, VARCHAR(200)}
+     * (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)}
      * @param updateUser The value of updateUser as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setUpdateUser_Equal(String updateUser) {
@@ -708,7 +632,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * VERSION_NO: {NotNull, BIGINT(19)}
+     * (バージョン番号)VERSION_NO: {NotNull, BIGINT(19)}
      * @param versionNo The value of versionNo as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setVersionNo_Equal(Long versionNo) {
@@ -723,7 +647,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * VERSION_NO: {NotNull, BIGINT(19)}
+     * (バージョン番号)VERSION_NO: {NotNull, BIGINT(19)}
      * @param minNumber The min number of versionNo. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of versionNo. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -736,7 +660,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * VERSION_NO: {NotNull, BIGINT(19)}
+     * (バージョン番号)VERSION_NO: {NotNull, BIGINT(19)}
      * @param minNumber The min number of versionNo. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of versionNo. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)

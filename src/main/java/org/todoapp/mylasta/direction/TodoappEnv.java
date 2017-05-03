@@ -62,10 +62,10 @@ public interface TodoappEnv {
     /** The key of the configuration. e.g. todoapp-support@annie.example.com */
     String MAIL_ADDRESS_SUPPORT = "mail.address.support";
 
-    /** The key of the configuration. e.g. org.h2.Driver */
+    /** The key of the configuration. e.g. com.mysql.jdbc.Driver */
     String JDBC_DRIVER = "jdbc.driver";
 
-    /** The key of the configuration. e.g. jdbc:h2:file:$classes(org.todoapp.dbflute.allcommon.DBCurrent.class)/../../etc/testdb/todoappdb */
+    /** The key of the configuration. e.g. jdbc:mysql://localhost:3306/todoappdb */
     String JDBC_URL = "jdbc.url";
 
     /** The key of the configuration. e.g. todoappdb */
@@ -235,7 +235,7 @@ public interface TodoappEnv {
 
     /**
      * Get the value for the key 'jdbc.driver'. <br>
-     * The value is, e.g. org.h2.Driver <br>
+     * The value is, e.g. com.mysql.jdbc.Driver <br>
      * comment: The driver FQCN to connect database for JDBC
      * @return The value of found property. (NotNull: if not found, exception but basically no way)
      */
@@ -243,7 +243,7 @@ public interface TodoappEnv {
 
     /**
      * Get the value for the key 'jdbc.url'. <br>
-     * The value is, e.g. jdbc:h2:file:$classes(org.todoapp.dbflute.allcommon.DBCurrent.class)/../../etc/testdb/todoappdb <br>
+     * The value is, e.g. jdbc:mysql://localhost:3306/todoappdb <br>
      * comment: The URL of database connection for JDBC
      * @return The value of found property. (NotNull: if not found, exception but basically no way)
      */

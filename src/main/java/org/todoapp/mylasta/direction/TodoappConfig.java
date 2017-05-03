@@ -47,8 +47,8 @@ public interface TodoappConfig extends TodoappEnv {
     /** The key of the configuration. e.g. 315360000 */
     String COOKIE_ETERNAL_EXPIRE = "cookie.eternal.expire";
 
-    /** The key of the configuration. e.g. HRB */
-    String COOKIE_REMEMBER_ME_HARBOR_KEY = "cookie.remember.me.todoapp.key";
+    /** The key of the configuration. e.g. TDA */
+    String COOKIE_REMEMBER_ME_TODOAPP_KEY = "cookie.remember.me.todoapp.key";
 
     /**
      * Get the value of property as {@link String}.
@@ -150,7 +150,7 @@ public interface TodoappConfig extends TodoappEnv {
 
     /**
      * Get the value for the key 'cookie.remember.me.todoapp.key'. <br>
-     * The value is, e.g. HRB <br>
+     * The value is, e.g. TDA <br>
      * comment: The cookie key of remember-me for Todoapp #change_it_first
      * @return The value of found property. (NotNull: if not found, exception but basically no way)
      */
@@ -206,7 +206,7 @@ public interface TodoappConfig extends TodoappEnv {
         }
 
         public String getCookieRememberMeTodoappKey() {
-            return get(TodoappConfig.COOKIE_REMEMBER_ME_HARBOR_KEY);
+            return get(TodoappConfig.COOKIE_REMEMBER_ME_TODOAPP_KEY);
         }
     }
 }

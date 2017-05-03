@@ -344,32 +344,32 @@ public class BsPurchasePaymentCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnPaymentAmount() { return doColumn("PAYMENT_AMOUNT"); }
         /**
-         * (支払日時)PAYMENT_DATETIME: {IX+, NotNull, TIMESTAMP(23, 10)}
+         * (支払日時)PAYMENT_DATETIME: {IX+, NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnPaymentDatetime() { return doColumn("PAYMENT_DATETIME"); }
         /**
-         * (支払方法コード)PAYMENT_METHOD_CODE: {NotNull, CHAR(3), classification=PaymentMethod}
+         * (支払方法コード)PAYMENT_METHOD_CODE: {NotNull, CHAR(3)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnPaymentMethodCode() { return doColumn("PAYMENT_METHOD_CODE"); }
         /**
-         * REGISTER_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+         * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnRegisterDatetime() { return doColumn("REGISTER_DATETIME"); }
         /**
-         * REGISTER_USER: {NotNull, VARCHAR(200)}
+         * (登録ユーザー)REGISTER_USER: {NotNull, VARCHAR(200)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnRegisterUser() { return doColumn("REGISTER_USER"); }
         /**
-         * UPDATE_DATETIME: {NotNull, TIMESTAMP(23, 10)}
+         * (更新日時)UPDATE_DATETIME: {NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnUpdateDatetime() { return doColumn("UPDATE_DATETIME"); }
         /**
-         * UPDATE_USER: {NotNull, VARCHAR(200)}
+         * (更新ユーザー)UPDATE_USER: {NotNull, VARCHAR(200)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnUpdateUser() { return doColumn("UPDATE_USER"); }
@@ -500,6 +500,13 @@ public class BsPurchasePaymentCB extends AbstractConditionBean {
      */
     public void orScopeQueryAndPart(AndQuery<PurchasePaymentCB> andCBLambda) {
         xorSQAP((PurchasePaymentCB)this, andCBLambda);
+    }
+
+    // ===================================================================================
+    //                                                                       Cursor Select
+    //                                                                       =============
+    public void customizeCursorSelect(SVOptionCall<CursorSelectOption> opLambda) {
+        doAcceptCursorSelectOption(opLambda);
     }
 
     // ===================================================================================

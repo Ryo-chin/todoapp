@@ -28,5 +28,6 @@
 	<component name="purchasePaymentBhv" class="org.todoapp.dbflute.exbhv.PurchasePaymentBhv"/>
 	<component name="regionBhv" class="org.todoapp.dbflute.exbhv.RegionBhv"/>
 	<component name="serviceRankBhv" class="org.todoapp.dbflute.exbhv.ServiceRankBhv"/>
+	<component name="taskBhv" class="org.todoapp.dbflute.exbhv.TaskBhv"/>
 	<component name="withdrawalReasonBhv" class="org.todoapp.dbflute.exbhv.WithdrawalReasonBhv"/>
 </components>

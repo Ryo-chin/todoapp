@@ -108,7 +108,7 @@ public class BsMemberStatusCB extends AbstractConditionBean {
 
     /**
      * Accept the query condition of unique key as equal.
-     * @param displayOrder (表示順): UQ, NotNull, INTEGER(10). (NotNull)
+     * @param displayOrder (表示順): UQ, NotNull, INT(10). (NotNull)
      * @return this. (NotNull)
      */
     public MemberStatusCB acceptUniqueOf(Integer displayOrder) {
@@ -326,7 +326,7 @@ public class BsMemberStatusCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnDescription() { return doColumn("DESCRIPTION"); }
         /**
-         * (表示順)DISPLAY_ORDER: {UQ, NotNull, INTEGER(10)}
+         * (表示順)DISPLAY_ORDER: {UQ, NotNull, INT(10)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnDisplayOrder() { return doColumn("DISPLAY_ORDER"); }
@@ -467,6 +467,13 @@ public class BsMemberStatusCB extends AbstractConditionBean {
      */
     public void orScopeQueryAndPart(AndQuery<MemberStatusCB> andCBLambda) {
         xorSQAP((MemberStatusCB)this, andCBLambda);
+    }
+
+    // ===================================================================================
+    //                                                                       Cursor Select
+    //                                                                       =============
+    public void customizeCursorSelect(SVOptionCall<CursorSelectOption> opLambda) {
+        doAcceptCursorSelectOption(opLambda);
     }
 
     // ===================================================================================

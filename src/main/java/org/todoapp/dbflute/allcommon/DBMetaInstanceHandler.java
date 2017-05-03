@@ -61,6 +61,7 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("PURCHASE_PAYMENT", "org.todoapp.dbflute.bsentity.dbmeta.PurchasePaymentDbm");
         tmpMap.put("REGION", "org.todoapp.dbflute.bsentity.dbmeta.RegionDbm");
         tmpMap.put("SERVICE_RANK", "org.todoapp.dbflute.bsentity.dbmeta.ServiceRankDbm");
+        tmpMap.put("TASK", "org.todoapp.dbflute.bsentity.dbmeta.TaskDbm");
         tmpMap.put("WITHDRAWAL_REASON", "org.todoapp.dbflute.bsentity.dbmeta.WithdrawalReasonDbm");
         _tableDbNameClassNameMap = Collections.unmodifiableMap(tmpMap);
     }

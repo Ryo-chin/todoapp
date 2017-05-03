@@ -1,4 +1,779 @@
 map:{
+    ; 2017/05/03 23:57:57 = map:{
+        ; diffDate = 2017/05/03 23:57:57
+        ; tableCount = map:{
+            ; next = 17
+            ; previous = 16
+        }
+        ; tableDiff = map:{
+            ; TASK = map:{
+                ; tableName = TASK
+                ; diffType = ADD
+            }
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; MEMBER_ID = map:{
+                        ; columnName = MEMBER_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                        ; defaultValueDiff = map:{
+                            ; next = null
+                            ; previous = "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_F45906CC_5625_4750_B42A_F11D38D588C8"
+                        }
+                    }
+                    ; FORMALIZED_DATETIME = map:{
+                        ; columnName = FORMALIZED_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; BIRTHDATE = map:{
+                        ; columnName = BIRTHDATE
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 10
+                            ; previous = 8
+                        }
+                    }
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+            }
+            ; MEMBER_ADDRESS = map:{
+                ; tableName = MEMBER_ADDRESS
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; MEMBER_ADDRESS_ID = map:{
+                        ; columnName = MEMBER_ADDRESS_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                        ; defaultValueDiff = map:{
+                            ; next = null
+                            ; previous = "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_4C955689_D641_4C1E_834F_8CB6CD6BB144"
+                        }
+                    }
+                    ; MEMBER_ID = map:{
+                        ; columnName = MEMBER_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; VALID_BEGIN_DATE = map:{
+                        ; columnName = VALID_BEGIN_DATE
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 10
+                            ; previous = 8
+                        }
+                    }
+                    ; VALID_END_DATE = map:{
+                        ; columnName = VALID_END_DATE
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 10
+                            ; previous = 8
+                        }
+                    }
+                    ; REGION_ID = map:{
+                        ; columnName = REGION_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_MEMBER_ADDRESS_MEMBER_INDEX_B = map:{
+                        ; constraintName = FK_MEMBER_ADDRESS_MEMBER_INDEX_B
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; MEMBER_FOLLOWING = map:{
+                ; tableName = MEMBER_FOLLOWING
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; MEMBER_FOLLOWING_ID = map:{
+                        ; columnName = MEMBER_FOLLOWING_ID
+                        ; diffType = CHANGE
+                        ; defaultValueDiff = map:{
+                            ; next = null
+                            ; previous = "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_9080B8EA_79EE_48F3_BD9A_8D542E8534DA"
+                        }
+                    }
+                    ; MY_MEMBER_ID = map:{
+                        ; columnName = MY_MEMBER_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; YOUR_MEMBER_ID = map:{
+                        ; columnName = YOUR_MEMBER_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; FOLLOW_DATETIME = map:{
+                        ; columnName = FOLLOW_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_MEMBER_FOLLOWING_MY_MEMBER_INDEX_B = map:{
+                        ; constraintName = FK_MEMBER_FOLLOWING_MY_MEMBER_INDEX_B
+                        ; diffType = DELETE
+                    }
+                    ; IX_MEMBER_FOLLOWING_UNIQUE_REVERSE = map:{
+                        ; constraintName = IX_MEMBER_FOLLOWING_UNIQUE_REVERSE
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; MEMBER_LOGIN = map:{
+                ; tableName = MEMBER_LOGIN
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; MEMBER_LOGIN_ID = map:{
+                        ; columnName = MEMBER_LOGIN_ID
+                        ; diffType = CHANGE
+                        ; defaultValueDiff = map:{
+                            ; next = null
+                            ; previous = "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_09E23A8B_4D07_44F1_B40C_6438BEEAE269"
+                        }
+                    }
+                    ; MEMBER_ID = map:{
+                        ; columnName = MEMBER_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; LOGIN_DATETIME = map:{
+                        ; columnName = LOGIN_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; MOBILE_LOGIN_FLG = map:{
+                        ; columnName = MOBILE_LOGIN_FLG
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_MEMBER_LOGIN_MEMBER_INDEX_B = map:{
+                        ; constraintName = FK_MEMBER_LOGIN_MEMBER_INDEX_B
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; MEMBER_SECURITY = map:{
+                ; tableName = MEMBER_SECURITY
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; MEMBER_ID = map:{
+                        ; columnName = MEMBER_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; REMINDER_USE_COUNT = map:{
+                        ; columnName = REMINDER_USE_COUNT
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+            }
+            ; MEMBER_SERVICE = map:{
+                ; tableName = MEMBER_SERVICE
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; MEMBER_SERVICE_ID = map:{
+                        ; columnName = MEMBER_SERVICE_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                        ; defaultValueDiff = map:{
+                            ; next = null
+                            ; previous = "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_A64A060E_50B6_4F0F_B610_4D1390E5F0AA"
+                        }
+                    }
+                    ; MEMBER_ID = map:{
+                        ; columnName = MEMBER_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; SERVICE_POINT_COUNT = map:{
+                        ; columnName = SERVICE_POINT_COUNT
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_MEMBER_SERVICE_MEMBER_INDEX_6 = map:{
+                        ; constraintName = FK_MEMBER_SERVICE_MEMBER_INDEX_6
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; MEMBER_STATUS = map:{
+                ; tableName = MEMBER_STATUS
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; DISPLAY_ORDER = map:{
+                        ; columnName = DISPLAY_ORDER
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                }
+            }
+            ; MEMBER_WITHDRAWAL = map:{
+                ; tableName = MEMBER_WITHDRAWAL
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; MEMBER_ID = map:{
+                        ; columnName = MEMBER_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; WITHDRAWAL_REASON_INPUT_TEXT = map:{
+                        ; columnName = WITHDRAWAL_REASON_INPUT_TEXT
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TEXT
+                            ; previous = CLOB
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 65535
+                            ; previous = 2147483647
+                        }
+                    }
+                    ; WITHDRAWAL_DATETIME = map:{
+                        ; columnName = WITHDRAWAL_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+            }
+            ; PRODUCT = map:{
+                ; tableName = PRODUCT
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; PRODUCT_ID = map:{
+                        ; columnName = PRODUCT_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                        ; defaultValueDiff = map:{
+                            ; next = null
+                            ; previous = "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_3AA7C3E3_9A9C_4E0F_BBCB_CECB6743046F"
+                        }
+                    }
+                    ; REGULAR_PRICE = map:{
+                        ; columnName = REGULAR_PRICE
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+            }
+            ; PRODUCT_CATEGORY = map:{
+                ; tableName = PRODUCT_CATEGORY
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+            }
+            ; PRODUCT_STATUS = map:{
+                ; tableName = PRODUCT_STATUS
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; DISPLAY_ORDER = map:{
+                        ; columnName = DISPLAY_ORDER
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                }
+            }
+            ; PURCHASE = map:{
+                ; tableName = PURCHASE
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; PURCHASE_ID = map:{
+                        ; columnName = PURCHASE_ID
+                        ; diffType = CHANGE
+                        ; defaultValueDiff = map:{
+                            ; next = null
+                            ; previous = "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_87915344_338F_4DF9_AA2E_4DC9395D7C80"
+                        }
+                    }
+                    ; MEMBER_ID = map:{
+                        ; columnName = MEMBER_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; PRODUCT_ID = map:{
+                        ; columnName = PRODUCT_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; PURCHASE_DATETIME = map:{
+                        ; columnName = PURCHASE_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; PURCHASE_COUNT = map:{
+                        ; columnName = PURCHASE_COUNT
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; PURCHASE_PRICE = map:{
+                        ; columnName = PURCHASE_PRICE
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; PAYMENT_COMPLETE_FLG = map:{
+                        ; columnName = PAYMENT_COMPLETE_FLG
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+            }
+            ; PURCHASE_PAYMENT = map:{
+                ; tableName = PURCHASE_PAYMENT
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; PURCHASE_PAYMENT_ID = map:{
+                        ; columnName = PURCHASE_PAYMENT_ID
+                        ; diffType = CHANGE
+                        ; defaultValueDiff = map:{
+                            ; next = null
+                            ; previous = "NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_182CCD8F_6A84_441E_9ACE_D3A4DB980C46"
+                        }
+                    }
+                    ; PAYMENT_DATETIME = map:{
+                        ; columnName = PAYMENT_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; REGISTER_DATETIME = map:{
+                        ; columnName = REGISTER_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                    ; UPDATE_DATETIME = map:{
+                        ; columnName = UPDATE_DATETIME
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = DATETIME
+                            ; previous = TIMESTAMP
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 19
+                            ; previous = 23, 10
+                        }
+                    }
+                }
+            }
+            ; REGION = map:{
+                ; tableName = REGION
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; REGION_ID = map:{
+                        ; columnName = REGION_ID
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                }
+            }
+            ; SERVICE_RANK = map:{
+                ; tableName = SERVICE_RANK
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; NEW_ACCEPTABLE_FLG = map:{
+                        ; columnName = NEW_ACCEPTABLE_FLG
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                    ; DISPLAY_ORDER = map:{
+                        ; columnName = DISPLAY_ORDER
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                }
+            }
+            ; WITHDRAWAL_REASON = map:{
+                ; tableName = WITHDRAWAL_REASON
+                ; diffType = CHANGE
+                ; unifiedSchemaDiff = map:{
+                    ; next = todoappdb
+                    ; previous = MAIHAMADB.PUBLIC
+                }
+                ; columnDiff = map:{
+                    ; WITHDRAWAL_REASON_TEXT = map:{
+                        ; columnName = WITHDRAWAL_REASON_TEXT
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = TEXT
+                            ; previous = CLOB
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 65535
+                            ; previous = 2147483647
+                        }
+                    }
+                    ; DISPLAY_ORDER = map:{
+                        ; columnName = DISPLAY_ORDER
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = INTEGER
+                        }
+                    }
+                }
+            }
+        }
+    }
     ; 2015/12/02 23:48:43 = map:{
         ; diffDate = 2015/12/02 23:48:43
         ; tableDiff = map:{
