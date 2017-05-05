@@ -28,7 +28,7 @@ import org.todoapp.dbflute.exentity.*;
  *     TASK_ID
  *
  * [column]
- *     TASK_ID, DESCRIPTION, DONE_FLG
+ *     TASK_ID, DESCRIPTION, TASK_STATUS_CODE
  *
  * [sequence]
  *     
@@ -40,13 +40,13 @@ import org.todoapp.dbflute.exentity.*;
  *     
  *
  * [foreign table]
- *     
+ *     TASK_STATUS
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     
+ *     taskStatus
  *
  * [referrer property]
  *     
@@ -74,6 +74,13 @@ public class LoaderOfTask {
     // ===================================================================================
     //                                                                    Pull out Foreign
     //                                                                    ================
+    protected LoaderOfTaskStatus _foreignTaskStatusLoader;
+    public LoaderOfTaskStatus pulloutTaskStatus() {
+        if (_foreignTaskStatusLoader == null)
+        { _foreignTaskStatusLoader = new LoaderOfTaskStatus().ready(myBhv().pulloutTaskStatus(_selectedList), _selector); }
+        return _foreignTaskStatusLoader;
+    }
+
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========

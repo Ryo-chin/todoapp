@@ -27,21 +27,21 @@ import org.todoapp.dbflute.cbean.cq.bs.*;
 import org.todoapp.dbflute.cbean.cq.*;
 
 /**
- * The condition-query for in-line of TASK.
+ * The condition-query for in-line of TASK_STATUS.
  * @author DBFlute(AutoGenerator)
  */
-public class TaskCIQ extends AbstractBsTaskCQ {
+public class TaskStatusCIQ extends AbstractBsTaskStatusCQ {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected BsTaskCQ _myCQ;
+    protected BsTaskStatusCQ _myCQ;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public TaskCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
-                        , String aliasName, int nestLevel, BsTaskCQ myCQ) {
+    public TaskStatusCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
+                        , String aliasName, int nestLevel, BsTaskStatusCQ myCQ) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
@@ -76,19 +76,30 @@ public class TaskCIQ extends AbstractBsTaskCQ {
     // ===================================================================================
     //                                                                Override about Query
     //                                                                ====================
-    protected ConditionValue xgetCValueTaskId() { return _myCQ.xdfgetTaskId(); }
-    protected ConditionValue xgetCValueDescription() { return _myCQ.xdfgetDescription(); }
     protected ConditionValue xgetCValueTaskStatusCode() { return _myCQ.xdfgetTaskStatusCode(); }
+    public String keepTaskStatusCode_ExistsReferrer_TaskList(TaskCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepTaskStatusCode_NotExistsReferrer_TaskList(TaskCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepTaskStatusCode_SpecifyDerivedReferrer_TaskList(TaskCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepTaskStatusCode_QueryDerivedReferrer_TaskList(TaskCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepTaskStatusCode_QueryDerivedReferrer_TaskListParameter(Object vl)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    protected ConditionValue xgetCValueTaskStatusName() { return _myCQ.xdfgetTaskStatusName(); }
+    protected ConditionValue xgetCValueDescription() { return _myCQ.xdfgetDescription(); }
+    protected ConditionValue xgetCValueDisplayOrder() { return _myCQ.xdfgetDisplayOrder(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
-    public String keepScalarCondition(TaskCQ sq)
+    public String keepScalarCondition(TaskStatusCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(TaskCQ sq)
+    public String keepSpecifyMyselfDerived(TaskStatusCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(TaskCQ sq)
+    public String keepQueryMyselfDerived(TaskStatusCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
     public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(TaskCQ sq)
+    public String keepMyselfExists(TaskStatusCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
 
     protected void throwIICBOE(String name)
@@ -98,6 +109,6 @@ public class TaskCIQ extends AbstractBsTaskCQ {
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xinCB() { return TaskCB.class.getName(); }
-    protected String xinCQ() { return TaskCQ.class.getName(); }
+    protected String xinCB() { return TaskStatusCB.class.getName(); }
+    protected String xinCQ() { return TaskStatusCQ.class.getName(); }
 }

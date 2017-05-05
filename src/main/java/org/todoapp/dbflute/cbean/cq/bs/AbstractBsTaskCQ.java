@@ -15,20 +15,31 @@
  */
 package org.todoapp.dbflute.cbean.cq.bs;
 
-import java.util.*;
-
-import org.dbflute.cbean.*;
-import org.dbflute.cbean.chelper.*;
-import org.dbflute.cbean.ckey.*;
-import org.dbflute.cbean.coption.*;
+import org.dbflute.cbean.AbstractConditionQuery;
+import org.dbflute.cbean.ConditionBean;
+import org.dbflute.cbean.ConditionQuery;
+import org.dbflute.cbean.chelper.HpQDRFunction;
+import org.dbflute.cbean.chelper.HpSLCCustomized;
+import org.dbflute.cbean.chelper.HpSLCFunction;
+import org.dbflute.cbean.chelper.HpSLCSetupper;
+import org.dbflute.cbean.ckey.ConditionKey;
+import org.dbflute.cbean.coption.ConditionOptionCall;
+import org.dbflute.cbean.coption.DerivedReferrerOption;
+import org.dbflute.cbean.coption.LikeSearchOption;
+import org.dbflute.cbean.coption.RangeOfOption;
+import org.dbflute.cbean.coption.ScalarConditionOption;
 import org.dbflute.cbean.cvalue.ConditionValue;
-import org.dbflute.cbean.ordering.*;
-import org.dbflute.cbean.scoping.*;
+import org.dbflute.cbean.ordering.ManualOrderOptionCall;
+import org.dbflute.cbean.scoping.SubQuery;
 import org.dbflute.cbean.sqlclause.SqlClause;
 import org.dbflute.dbmeta.DBMetaProvider;
-import org.todoapp.dbflute.allcommon.*;
-import org.todoapp.dbflute.cbean.*;
-import org.todoapp.dbflute.cbean.cq.*;
+import org.todoapp.dbflute.allcommon.CDef;
+import org.todoapp.dbflute.allcommon.DBMetaInstanceHandler;
+import org.todoapp.dbflute.cbean.TaskCB;
+import org.todoapp.dbflute.cbean.cq.TaskCQ;
+
+import java.util.Collection;
+import java.util.Date;
 
 /**
  * The abstract condition-query of TASK.
@@ -248,141 +259,163 @@ public abstract class AbstractBsTaskCQ extends AbstractConditionQuery {
     protected abstract ConditionValue xgetCValueDescription();
 
     /**
-     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * DONE_FLG: {NotNull, INT(10), classification=Flg}
-     * @param doneFlg The value of doneFlg as equal. (basically NotNull: error as default, or no condition as option)
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus}
+     * @param taskStatusCode The value of taskStatusCode as equal. (NullAllowed: if null (or empty), no condition)
      */
-    protected void setDoneFlg_Equal(Integer doneFlg) {
-        doSetDoneFlg_Equal(doneFlg);
+    protected void setTaskStatusCode_Equal(String taskStatusCode) {
+        doSetTaskStatusCode_Equal(fRES(taskStatusCode));
     }
 
     /**
-     * Equal(=). As Flg. And NullIgnored, OnlyOnceRegistered. <br>
-     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
-     * general boolean classification for every flg-column
+     * Equal(=). As TaskStatus. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus} <br>
+     * status of task
      * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
      */
-    public void setDoneFlg_Equal_AsFlg(CDef.Flg cdef) {
-        doSetDoneFlg_Equal(cTNum(cdef != null ? cdef.code() : null, Integer.class));
+    public void setTaskStatusCode_Equal_AsTaskStatus(CDef.TaskStatus cdef) {
+        doSetTaskStatusCode_Equal(cdef != null ? cdef.code() : null);
     }
 
     /**
-     * Equal(=). As boolean for Flg. <br>
-     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
-     * general boolean classification for every flg-column
-     * @param determination The determination, true or false. (basically NotNull: error as default, or no condition as option)
+     * Equal(=). As NotStartedYet (YET). And OnlyOnceRegistered. <br>
+     * NotStartedYet: 未着手
      */
-    public void setDoneFlg_Equal_AsBoolean(Boolean determination) {
-        setDoneFlg_Equal_AsFlg(CDef.Flg.codeOf(determination));
+    public void setTaskStatusCode_Equal_NotStartedYet() {
+        setTaskStatusCode_Equal_AsTaskStatus(CDef.TaskStatus.NotStartedYet);
     }
 
     /**
-     * Equal(=). As True (1). And NullIgnored, OnlyOnceRegistered. <br>
-     * Checked: means yes
+     * Equal(=). As WorkInProgress2 (WIP). And OnlyOnceRegistered. <br>
+     * WorkInProgress2: 進行中
      */
-    public void setDoneFlg_Equal_True() {
-        setDoneFlg_Equal_AsFlg(CDef.Flg.True);
+    public void setTaskStatusCode_Equal_WorkInProgress2() {
+        setTaskStatusCode_Equal_AsTaskStatus(CDef.TaskStatus.WorkInProgress2);
     }
 
     /**
-     * Equal(=). As False (0). And NullIgnored, OnlyOnceRegistered. <br>
-     * Unchecked: means no
+     * Equal(=). As Completed (CMP). And OnlyOnceRegistered. <br>
+     * Completed: 完了
      */
-    public void setDoneFlg_Equal_False() {
-        setDoneFlg_Equal_AsFlg(CDef.Flg.False);
-    }
-
-    protected void doSetDoneFlg_Equal(Integer doneFlg) {
-        regDoneFlg(CK_EQ, doneFlg);
+    public void setTaskStatusCode_Equal_Completed() {
+        setTaskStatusCode_Equal_AsTaskStatus(CDef.TaskStatus.Completed);
     }
 
     /**
-     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * DONE_FLG: {NotNull, INT(10), classification=Flg}
-     * @param doneFlg The value of doneFlg as notEqual. (basically NotNull: error as default, or no condition as option)
+     * Equal(=). As Deleted (DEL). And OnlyOnceRegistered. <br>
+     * Deleted: 削除
      */
-    protected void setDoneFlg_NotEqual(Integer doneFlg) {
-        doSetDoneFlg_NotEqual(doneFlg);
+    public void setTaskStatusCode_Equal_Deleted() {
+        setTaskStatusCode_Equal_AsTaskStatus(CDef.TaskStatus.Deleted);
+    }
+
+    protected void doSetTaskStatusCode_Equal(String taskStatusCode) {
+        regTaskStatusCode(CK_EQ, taskStatusCode);
     }
 
     /**
-     * NotEqual(&lt;&gt;). As Flg. And NullIgnored, OnlyOnceRegistered. <br>
-     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
-     * general boolean classification for every flg-column
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus}
+     * @param taskStatusCode The value of taskStatusCode as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    protected void setTaskStatusCode_NotEqual(String taskStatusCode) {
+        doSetTaskStatusCode_NotEqual(fRES(taskStatusCode));
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). As TaskStatus. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus} <br>
+     * status of task
      * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
      */
-    public void setDoneFlg_NotEqual_AsFlg(CDef.Flg cdef) {
-        doSetDoneFlg_NotEqual(cTNum(cdef != null ? cdef.code() : null, Integer.class));
+    public void setTaskStatusCode_NotEqual_AsTaskStatus(CDef.TaskStatus cdef) {
+        doSetTaskStatusCode_NotEqual(cdef != null ? cdef.code() : null);
     }
 
     /**
-     * NotEqual(&lt;&gt;). As True (1). And NullIgnored, OnlyOnceRegistered. <br>
-     * Checked: means yes
+     * NotEqual(&lt;&gt;). As NotStartedYet (YET). And OnlyOnceRegistered. <br>
+     * NotStartedYet: 未着手
      */
-    public void setDoneFlg_NotEqual_True() {
-        setDoneFlg_NotEqual_AsFlg(CDef.Flg.True);
+    public void setTaskStatusCode_NotEqual_NotStartedYet() {
+        setTaskStatusCode_NotEqual_AsTaskStatus(CDef.TaskStatus.NotStartedYet);
     }
 
     /**
-     * NotEqual(&lt;&gt;). As False (0). And NullIgnored, OnlyOnceRegistered. <br>
-     * Unchecked: means no
+     * NotEqual(&lt;&gt;). As WorkInProgress2 (WIP). And OnlyOnceRegistered. <br>
+     * WorkInProgress2: 進行中
      */
-    public void setDoneFlg_NotEqual_False() {
-        setDoneFlg_NotEqual_AsFlg(CDef.Flg.False);
-    }
-
-    protected void doSetDoneFlg_NotEqual(Integer doneFlg) {
-        regDoneFlg(CK_NES, doneFlg);
+    public void setTaskStatusCode_NotEqual_WorkInProgress2() {
+        setTaskStatusCode_NotEqual_AsTaskStatus(CDef.TaskStatus.WorkInProgress2);
     }
 
     /**
-     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * DONE_FLG: {NotNull, INT(10), classification=Flg}
-     * @param doneFlgList The collection of doneFlg as inScope. (NullAllowed: if null (or empty), no condition)
+     * NotEqual(&lt;&gt;). As Completed (CMP). And OnlyOnceRegistered. <br>
+     * Completed: 完了
      */
-    protected void setDoneFlg_InScope(Collection<Integer> doneFlgList) {
-        doSetDoneFlg_InScope(doneFlgList);
+    public void setTaskStatusCode_NotEqual_Completed() {
+        setTaskStatusCode_NotEqual_AsTaskStatus(CDef.TaskStatus.Completed);
     }
 
     /**
-     * InScope {in (1, 2)}. As Flg. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
-     * general boolean classification for every flg-column
+     * NotEqual(&lt;&gt;). As Deleted (DEL). And OnlyOnceRegistered. <br>
+     * Deleted: 削除
+     */
+    public void setTaskStatusCode_NotEqual_Deleted() {
+        setTaskStatusCode_NotEqual_AsTaskStatus(CDef.TaskStatus.Deleted);
+    }
+
+    protected void doSetTaskStatusCode_NotEqual(String taskStatusCode) {
+        regTaskStatusCode(CK_NES, taskStatusCode);
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus}
+     * @param taskStatusCodeList The collection of taskStatusCode as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    protected void setTaskStatusCode_InScope(Collection<String> taskStatusCodeList) {
+        doSetTaskStatusCode_InScope(taskStatusCodeList);
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. As TaskStatus. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus} <br>
+     * status of task
      * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
      */
-    public void setDoneFlg_InScope_AsFlg(Collection<CDef.Flg> cdefList) {
-        doSetDoneFlg_InScope(cTNumL(cdefList, Integer.class));
+    public void setTaskStatusCode_InScope_AsTaskStatus(Collection<CDef.TaskStatus> cdefList) {
+        doSetTaskStatusCode_InScope(cTStrL(cdefList));
     }
 
-    protected void doSetDoneFlg_InScope(Collection<Integer> doneFlgList) {
-        regINS(CK_INS, cTL(doneFlgList), xgetCValueDoneFlg(), "DONE_FLG");
+    protected void doSetTaskStatusCode_InScope(Collection<String> taskStatusCodeList) {
+        regINS(CK_INS, cTL(taskStatusCodeList), xgetCValueTaskStatusCode(), "TASK_STATUS_CODE");
     }
 
     /**
-     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * DONE_FLG: {NotNull, INT(10), classification=Flg}
-     * @param doneFlgList The collection of doneFlg as notInScope. (NullAllowed: if null (or empty), no condition)
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus}
+     * @param taskStatusCodeList The collection of taskStatusCode as notInScope. (NullAllowed: if null (or empty), no condition)
      */
-    protected void setDoneFlg_NotInScope(Collection<Integer> doneFlgList) {
-        doSetDoneFlg_NotInScope(doneFlgList);
+    protected void setTaskStatusCode_NotInScope(Collection<String> taskStatusCodeList) {
+        doSetTaskStatusCode_NotInScope(taskStatusCodeList);
     }
 
     /**
-     * NotInScope {not in (1, 2)}. As Flg. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
-     * general boolean classification for every flg-column
+     * NotInScope {not in ('a', 'b')}. As TaskStatus. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus} <br>
+     * status of task
      * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
      */
-    public void setDoneFlg_NotInScope_AsFlg(Collection<CDef.Flg> cdefList) {
-        doSetDoneFlg_NotInScope(cTNumL(cdefList, Integer.class));
+    public void setTaskStatusCode_NotInScope_AsTaskStatus(Collection<CDef.TaskStatus> cdefList) {
+        doSetTaskStatusCode_NotInScope(cTStrL(cdefList));
     }
 
-    protected void doSetDoneFlg_NotInScope(Collection<Integer> doneFlgList) {
-        regINS(CK_NINS, cTL(doneFlgList), xgetCValueDoneFlg(), "DONE_FLG");
+    protected void doSetTaskStatusCode_NotInScope(Collection<String> taskStatusCodeList) {
+        regINS(CK_NINS, cTL(taskStatusCodeList), xgetCValueTaskStatusCode(), "TASK_STATUS_CODE");
     }
 
-    protected void regDoneFlg(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueDoneFlg(), "DONE_FLG"); }
-    protected abstract ConditionValue xgetCValueDoneFlg();
+    protected void regTaskStatusCode(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueTaskStatusCode(), "TASK_STATUS_CODE"); }
+    protected abstract ConditionValue xgetCValueTaskStatusCode();
 
     // ===================================================================================
     //                                                                     ScalarCondition

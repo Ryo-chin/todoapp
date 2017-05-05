@@ -12,7 +12,7 @@ public class TaskResult {
     //                                                                           =========
     public Long taskId;
     public String description;
-    public Boolean doneFlg;
+    public String statusCode;
 
     // ===================================================================================
     //                                                                         Constructor
@@ -20,6 +20,6 @@ public class TaskResult {
     public TaskResult(Task task) {
         this.taskId = task.getTaskId();
         this.description = task.getDescription();
-        this.doneFlg = task.isDoneFlgTrue();
+        this.statusCode = task.getTaskStatusCode();
     }
 }

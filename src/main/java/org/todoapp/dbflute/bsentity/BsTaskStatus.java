@@ -18,58 +18,58 @@ package org.todoapp.dbflute.bsentity;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.dbflute.Entity;
 import org.dbflute.dbmeta.DBMeta;
 import org.dbflute.dbmeta.AbstractEntity;
 import org.dbflute.dbmeta.accessory.DomainEntity;
-import org.dbflute.optional.OptionalEntity;
 import org.todoapp.dbflute.allcommon.DBMetaInstanceHandler;
 import org.todoapp.dbflute.allcommon.CDef;
 import org.todoapp.dbflute.exentity.*;
 
 /**
- * The entity of TASK as TABLE. <br>
+ * The entity of TASK_STATUS as TABLE. <br>
  * <pre>
  * [primary-key]
- *     TASK_ID
+ *     TASK_STATUS_CODE
  *
  * [column]
- *     TASK_ID, DESCRIPTION, TASK_STATUS_CODE
+ *     TASK_STATUS_CODE, TASK_STATUS_NAME, DESCRIPTION, DISPLAY_ORDER
  *
  * [sequence]
  *     
  *
  * [identity]
- *     TASK_ID
+ *     
  *
  * [version-no]
  *     
  *
  * [foreign table]
- *     TASK_STATUS
+ *     
  *
  * [referrer table]
- *     
+ *     TASK
  *
  * [foreign property]
- *     taskStatus
+ *     
  *
  * [referrer property]
- *     
+ *     taskList
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
- * Long taskId = entity.getTaskId();
- * String description = entity.getDescription();
  * String taskStatusCode = entity.getTaskStatusCode();
- * entity.setTaskId(taskId);
- * entity.setDescription(description);
+ * String taskStatusName = entity.getTaskStatusName();
+ * String description = entity.getDescription();
+ * Integer displayOrder = entity.getDisplayOrder();
  * entity.setTaskStatusCode(taskStatusCode);
+ * entity.setTaskStatusName(taskStatusName);
+ * entity.setDescription(description);
+ * entity.setDisplayOrder(displayOrder);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsTask extends AbstractEntity implements DomainEntity {
+public abstract class BsTaskStatus extends AbstractEntity implements DomainEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -80,14 +80,17 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** TASK_ID: {PK, ID, NotNull, BIGINT(19)} */
-    protected Long _taskId;
+    /** TASK_STATUS_CODE: {PK, NotNull, CHAR(3), classification=TaskStatus} */
+    protected String _taskStatusCode;
 
-    /** DESCRIPTION: {NotNull, TEXT(65535)} */
+    /** TASK_STATUS_NAME: {NotNull, VARCHAR(50)} */
+    protected String _taskStatusName;
+
+    /** DESCRIPTION: {NotNull, VARCHAR(200)} */
     protected String _description;
 
-    /** TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus} */
-    protected String _taskStatusCode;
+    /** DISPLAY_ORDER: {NotNull, INT(10)} */
+    protected Integer _displayOrder;
 
     // ===================================================================================
     //                                                                             DB Meta
@@ -99,7 +102,7 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
 
     /** {@inheritDoc} */
     public String asTableDbName() {
-        return "TASK";
+        return "TASK_STATUS";
     }
 
     // ===================================================================================
@@ -107,7 +110,7 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     //                                                                        ============
     /** {@inheritDoc} */
     public boolean hasPrimaryKeyValue() {
-        if (_taskId == null) { return false; }
+        if (_taskStatusCode == null) { return false; }
         return true;
     }
 
@@ -116,7 +119,7 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     //                                                             =======================
     /**
      * Get the value of taskStatusCode as the classification of TaskStatus. <br>
-     * TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus} <br>
+     * TASK_STATUS_CODE: {PK, NotNull, CHAR(3), classification=TaskStatus} <br>
      * status of task
      * <p>It's treated as case insensitive and if the code value is null, it returns null.</p>
      * @return The instance of classification definition (as ENUM type). (NullAllowed: when the column value is null)
@@ -127,7 +130,7 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
 
     /**
      * Set the value of taskStatusCode as the classification of TaskStatus. <br>
-     * TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus} <br>
+     * TASK_STATUS_CODE: {PK, NotNull, CHAR(3), classification=TaskStatus} <br>
      * status of task
      * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, null value is set to the column)
      */
@@ -220,30 +223,29 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
-    /** TASK_STATUS by my TASK_STATUS_CODE, named 'taskStatus'. */
-    protected OptionalEntity<TaskStatus> _taskStatus;
-
-    /**
-     * [get] TASK_STATUS by my TASK_STATUS_CODE, named 'taskStatus'. <br>
-     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
-     * @return The entity of foreign property 'taskStatus'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
-     */
-    public OptionalEntity<TaskStatus> getTaskStatus() {
-        if (_taskStatus == null) { _taskStatus = OptionalEntity.relationEmpty(this, "taskStatus"); }
-        return _taskStatus;
-    }
-
-    /**
-     * [set] TASK_STATUS by my TASK_STATUS_CODE, named 'taskStatus'.
-     * @param taskStatus The entity of foreign property 'taskStatus'. (NullAllowed)
-     */
-    public void setTaskStatus(OptionalEntity<TaskStatus> taskStatus) {
-        _taskStatus = taskStatus;
-    }
-
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
+    /** TASK by TASK_STATUS_CODE, named 'taskList'. */
+    protected List<Task> _taskList;
+
+    /**
+     * [get] TASK by TASK_STATUS_CODE, named 'taskList'.
+     * @return The entity list of referrer property 'taskList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<Task> getTaskList() {
+        if (_taskList == null) { _taskList = newReferrerList(); }
+        return _taskList;
+    }
+
+    /**
+     * [set] TASK by TASK_STATUS_CODE, named 'taskList'.
+     * @param taskList The entity list of referrer property 'taskList'. (NullAllowed)
+     */
+    public void setTaskList(List<Task> taskList) {
+        _taskList = taskList;
+    }
+
     protected <ELEMENT> List<ELEMENT> newReferrerList() { // overriding to import
         return new ArrayList<ELEMENT>();
     }
@@ -253,9 +255,9 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     //                                                                      ==============
     @Override
     protected boolean doEquals(Object obj) {
-        if (obj instanceof BsTask) {
-            BsTask other = (BsTask)obj;
-            if (!xSV(_taskId, other._taskId)) { return false; }
+        if (obj instanceof BsTaskStatus) {
+            BsTaskStatus other = (BsTaskStatus)obj;
+            if (!xSV(_taskStatusCode, other._taskStatusCode)) { return false; }
             return true;
         } else {
             return false;
@@ -266,27 +268,25 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     protected int doHashCode(int initial) {
         int hs = initial;
         hs = xCH(hs, asTableDbName());
-        hs = xCH(hs, _taskId);
+        hs = xCH(hs, _taskStatusCode);
         return hs;
     }
 
     @Override
     protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        if (_taskStatus != null && _taskStatus.isPresent())
-        { sb.append(li).append(xbRDS(_taskStatus, "taskStatus")); }
+        if (_taskList != null) { for (Task et : _taskList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "taskList")); } } }
         return sb.toString();
-    }
-    protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
-        return et.get().buildDisplayString(name, true, true);
     }
 
     @Override
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(dm).append(xfND(_taskId));
-        sb.append(dm).append(xfND(_description));
         sb.append(dm).append(xfND(_taskStatusCode));
+        sb.append(dm).append(xfND(_taskStatusName));
+        sb.append(dm).append(xfND(_description));
+        sb.append(dm).append(xfND(_displayOrder));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
@@ -297,8 +297,8 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_taskStatus != null && _taskStatus.isPresent())
-        { sb.append(dm).append("taskStatus"); }
+        if (_taskList != null && !_taskList.isEmpty())
+        { sb.append(dm).append("taskList"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -306,51 +306,15 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     }
 
     @Override
-    public Task clone() {
-        return (Task)super.clone();
+    public TaskStatus clone() {
+        return (TaskStatus)super.clone();
     }
 
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] TASK_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * @return The value of the column 'TASK_ID'. (basically NotNull if selected: for the constraint)
-     */
-    public Long getTaskId() {
-        checkSpecifiedProperty("taskId");
-        return _taskId;
-    }
-
-    /**
-     * [set] TASK_ID: {PK, ID, NotNull, BIGINT(19)} <br>
-     * @param taskId The value of the column 'TASK_ID'. (basically NotNull if update: for the constraint)
-     */
-    public void setTaskId(Long taskId) {
-        registerModifiedProperty("taskId");
-        _taskId = taskId;
-    }
-
-    /**
-     * [get] DESCRIPTION: {NotNull, TEXT(65535)} <br>
-     * @return The value of the column 'DESCRIPTION'. (basically NotNull if selected: for the constraint)
-     */
-    public String getDescription() {
-        checkSpecifiedProperty("description");
-        return convertEmptyToNull(_description);
-    }
-
-    /**
-     * [set] DESCRIPTION: {NotNull, TEXT(65535)} <br>
-     * @param description The value of the column 'DESCRIPTION'. (basically NotNull if update: for the constraint)
-     */
-    public void setDescription(String description) {
-        registerModifiedProperty("description");
-        _description = description;
-    }
-
-    /**
-     * [get] TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus} <br>
+     * [get] TASK_STATUS_CODE: {PK, NotNull, CHAR(3), classification=TaskStatus} <br>
      * @return The value of the column 'TASK_STATUS_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getTaskStatusCode() {
@@ -359,13 +323,67 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     }
 
     /**
-     * [set] TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus} <br>
+     * [set] TASK_STATUS_CODE: {PK, NotNull, CHAR(3), classification=TaskStatus} <br>
      * @param taskStatusCode The value of the column 'TASK_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setTaskStatusCode(String taskStatusCode) {
         checkClassificationCode("TASK_STATUS_CODE", CDef.DefMeta.TaskStatus, taskStatusCode);
         registerModifiedProperty("taskStatusCode");
         _taskStatusCode = taskStatusCode;
+    }
+
+    /**
+     * [get] TASK_STATUS_NAME: {NotNull, VARCHAR(50)} <br>
+     * @return The value of the column 'TASK_STATUS_NAME'. (basically NotNull if selected: for the constraint)
+     */
+    public String getTaskStatusName() {
+        checkSpecifiedProperty("taskStatusName");
+        return convertEmptyToNull(_taskStatusName);
+    }
+
+    /**
+     * [set] TASK_STATUS_NAME: {NotNull, VARCHAR(50)} <br>
+     * @param taskStatusName The value of the column 'TASK_STATUS_NAME'. (basically NotNull if update: for the constraint)
+     */
+    public void setTaskStatusName(String taskStatusName) {
+        registerModifiedProperty("taskStatusName");
+        _taskStatusName = taskStatusName;
+    }
+
+    /**
+     * [get] DESCRIPTION: {NotNull, VARCHAR(200)} <br>
+     * @return The value of the column 'DESCRIPTION'. (basically NotNull if selected: for the constraint)
+     */
+    public String getDescription() {
+        checkSpecifiedProperty("description");
+        return convertEmptyToNull(_description);
+    }
+
+    /**
+     * [set] DESCRIPTION: {NotNull, VARCHAR(200)} <br>
+     * @param description The value of the column 'DESCRIPTION'. (basically NotNull if update: for the constraint)
+     */
+    public void setDescription(String description) {
+        registerModifiedProperty("description");
+        _description = description;
+    }
+
+    /**
+     * [get] DISPLAY_ORDER: {NotNull, INT(10)} <br>
+     * @return The value of the column 'DISPLAY_ORDER'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getDisplayOrder() {
+        checkSpecifiedProperty("displayOrder");
+        return _displayOrder;
+    }
+
+    /**
+     * [set] DISPLAY_ORDER: {NotNull, INT(10)} <br>
+     * @param displayOrder The value of the column 'DISPLAY_ORDER'. (basically NotNull if update: for the constraint)
+     */
+    public void setDisplayOrder(Integer displayOrder) {
+        registerModifiedProperty("displayOrder");
+        _displayOrder = displayOrder;
     }
 
     /**

@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.dbflute.Entity;
-import org.dbflute.optional.OptionalEntity;
 import org.dbflute.dbmeta.AbstractDBMeta;
 import org.dbflute.dbmeta.info.*;
 import org.dbflute.dbmeta.name.*;
@@ -29,17 +28,17 @@ import org.todoapp.dbflute.allcommon.*;
 import org.todoapp.dbflute.exentity.*;
 
 /**
- * The DB meta of TASK. (Singleton)
+ * The DB meta of TASK_STATUS. (Singleton)
  * @author DBFlute(AutoGenerator)
  */
-public class TaskDbm extends AbstractDBMeta {
+public class TaskStatusDbm extends AbstractDBMeta {
 
     // ===================================================================================
     //                                                                           Singleton
     //                                                                           =========
-    private static final TaskDbm _instance = new TaskDbm();
-    private TaskDbm() {}
-    public static TaskDbm getInstance() { return _instance; }
+    private static final TaskStatusDbm _instance = new TaskStatusDbm();
+    private TaskStatusDbm() {}
+    public static TaskStatusDbm getInstance() { return _instance; }
 
     // ===================================================================================
     //                                                                       Current DBDef
@@ -58,39 +57,28 @@ public class TaskDbm extends AbstractDBMeta {
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     { xsetupEpg(); }
     protected void xsetupEpg() {
-        setupEpg(_epgMap, et -> ((Task)et).getTaskId(), (et, vl) -> ((Task)et).setTaskId(ctl(vl)), "taskId");
-        setupEpg(_epgMap, et -> ((Task)et).getDescription(), (et, vl) -> ((Task)et).setDescription((String)vl), "description");
-        setupEpg(_epgMap, et -> ((Task)et).getTaskStatusCode(), (et, vl) -> {
+        setupEpg(_epgMap, et -> ((TaskStatus)et).getTaskStatusCode(), (et, vl) -> {
             CDef.TaskStatus cls = (CDef.TaskStatus)gcls(et, columnTaskStatusCode(), vl);
             if (cls != null) {
-                ((Task)et).setTaskStatusCodeAsTaskStatus(cls);
+                ((TaskStatus)et).setTaskStatusCodeAsTaskStatus(cls);
             } else {
-                ((Task)et).mynativeMappingTaskStatusCode((String)vl);
+                ((TaskStatus)et).mynativeMappingTaskStatusCode((String)vl);
             }
         }, "taskStatusCode");
+        setupEpg(_epgMap, et -> ((TaskStatus)et).getTaskStatusName(), (et, vl) -> ((TaskStatus)et).setTaskStatusName((String)vl), "taskStatusName");
+        setupEpg(_epgMap, et -> ((TaskStatus)et).getDescription(), (et, vl) -> ((TaskStatus)et).setDescription((String)vl), "description");
+        setupEpg(_epgMap, et -> ((TaskStatus)et).getDisplayOrder(), (et, vl) -> ((TaskStatus)et).setDisplayOrder(cti(vl)), "displayOrder");
     }
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
 
-    // -----------------------------------------------------
-    //                                      Foreign Property
-    //                                      ----------------
-    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
-    { xsetupEfpg(); }
-    @SuppressWarnings("unchecked")
-    protected void xsetupEfpg() {
-        setupEfpg(_efpgMap, et -> ((Task)et).getTaskStatus(), (et, vl) -> ((Task)et).setTaskStatus((OptionalEntity<TaskStatus>)vl), "taskStatus");
-    }
-    public PropertyGateway findForeignPropertyGateway(String prop)
-    { return doFindEfpg(_efpgMap, prop); }
-
     // ===================================================================================
     //                                                                          Table Info
     //                                                                          ==========
-    protected final String _tableDbName = "TASK";
-    protected final String _tableDispName = "TASK";
-    protected final String _tablePropertyName = "task";
-    protected final TableSqlName _tableSqlName = new TableSqlName("TASK", _tableDbName);
+    protected final String _tableDbName = "TASK_STATUS";
+    protected final String _tableDispName = "TASK_STATUS";
+    protected final String _tablePropertyName = "taskStatus";
+    protected final TableSqlName _tableSqlName = new TableSqlName("TASK_STATUS", _tableDbName);
     { _tableSqlName.xacceptFilter(DBFluteConfig.getInstance().getTableSqlNameFilter()); }
     public String getTableDbName() { return _tableDbName; }
     public String getTableDispName() { return _tableDispName; }
@@ -100,31 +88,38 @@ public class TaskDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnTaskId = cci("TASK_ID", "TASK_ID", null, null, Long.class, "taskId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnDescription = cci("DESCRIPTION", "DESCRIPTION", null, null, String.class, "description", null, false, false, true, "TEXT", 65535, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnTaskStatusCode = cci("TASK_STATUS_CODE", "TASK_STATUS_CODE", null, null, String.class, "taskStatusCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, "taskStatus", null, CDef.DefMeta.TaskStatus, false);
+    protected final ColumnInfo _columnTaskStatusCode = cci("TASK_STATUS_CODE", "TASK_STATUS_CODE", null, null, String.class, "taskStatusCode", null, true, false, true, "CHAR", 3, 0, null, false, null, null, null, "taskList", CDef.DefMeta.TaskStatus, false);
+    protected final ColumnInfo _columnTaskStatusName = cci("TASK_STATUS_NAME", "TASK_STATUS_NAME", null, null, String.class, "taskStatusName", null, false, false, true, "VARCHAR", 50, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnDescription = cci("DESCRIPTION", "DESCRIPTION", null, null, String.class, "description", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnDisplayOrder = cci("DISPLAY_ORDER", "DISPLAY_ORDER", null, null, Integer.class, "displayOrder", null, false, false, true, "INT", 10, 0, null, false, null, null, null, null, null, false);
 
     /**
-     * TASK_ID: {PK, ID, NotNull, BIGINT(19)}
+     * TASK_STATUS_CODE: {PK, NotNull, CHAR(3), classification=TaskStatus}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnTaskId() { return _columnTaskId; }
+    public ColumnInfo columnTaskStatusCode() { return _columnTaskStatusCode; }
     /**
-     * DESCRIPTION: {NotNull, TEXT(65535)}
+     * TASK_STATUS_NAME: {NotNull, VARCHAR(50)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnTaskStatusName() { return _columnTaskStatusName; }
+    /**
+     * DESCRIPTION: {NotNull, VARCHAR(200)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnDescription() { return _columnDescription; }
     /**
-     * TASK_STATUS_CODE: {IX, NotNull, CHAR(3), FK to TASK_STATUS, classification=TaskStatus}
+     * DISPLAY_ORDER: {NotNull, INT(10)}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnTaskStatusCode() { return _columnTaskStatusCode; }
+    public ColumnInfo columnDisplayOrder() { return _columnDisplayOrder; }
 
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
-        ls.add(columnTaskId());
-        ls.add(columnDescription());
         ls.add(columnTaskStatusCode());
+        ls.add(columnTaskStatusName());
+        ls.add(columnDescription());
+        ls.add(columnDisplayOrder());
         return ls;
     }
 
@@ -136,7 +131,7 @@ public class TaskDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                       Primary Element
     //                                       ---------------
-    protected UniqueInfo cpui() { return hpcpui(columnTaskId()); }
+    protected UniqueInfo cpui() { return hpcpui(columnTaskStatusCode()); }
     public boolean hasPrimaryKey() { return true; }
     public boolean hasCompoundPrimaryKey() { return false; }
 
@@ -148,48 +143,47 @@ public class TaskDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
-    /**
-     * TASK_STATUS by my TASK_STATUS_CODE, named 'taskStatus'.
-     * @return The information object of foreign property. (NotNull)
-     */
-    public ForeignInfo foreignTaskStatus() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTaskStatusCode(), TaskStatusDbm.getInstance().columnTaskStatusCode());
-        return cfi("FK_TASK_TASK_STATUS_TASK_STATUS_CODE", "taskStatus", this, TaskStatusDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "taskList", false);
-    }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * TASK by TASK_STATUS_CODE, named 'taskList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerTaskList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnTaskStatusCode(), TaskDbm.getInstance().columnTaskStatusCode());
+        return cri("FK_TASK_TASK_STATUS_TASK_STATUS_CODE", "taskList", this, TaskDbm.getInstance(), mp, false, "taskStatus");
+    }
 
     // ===================================================================================
     //                                                                        Various Info
     //                                                                        ============
-    public boolean hasIdentity() { return true; }
 
     // ===================================================================================
     //                                                                           Type Name
     //                                                                           =========
-    public String getEntityTypeName() { return "org.todoapp.dbflute.exentity.Task"; }
-    public String getConditionBeanTypeName() { return "org.todoapp.dbflute.cbean.TaskCB"; }
-    public String getBehaviorTypeName() { return "org.todoapp.dbflute.exbhv.TaskBhv"; }
+    public String getEntityTypeName() { return "org.todoapp.dbflute.exentity.TaskStatus"; }
+    public String getConditionBeanTypeName() { return "org.todoapp.dbflute.cbean.TaskStatusCB"; }
+    public String getBehaviorTypeName() { return "org.todoapp.dbflute.exbhv.TaskStatusBhv"; }
 
     // ===================================================================================
     //                                                                         Object Type
     //                                                                         ===========
-    public Class<Task> getEntityType() { return Task.class; }
+    public Class<TaskStatus> getEntityType() { return TaskStatus.class; }
 
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Task newEntity() { return new Task(); }
+    public TaskStatus newEntity() { return new TaskStatus(); }
 
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
     public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
-    { doAcceptPrimaryKeyMap((Task)et, mp); }
+    { doAcceptPrimaryKeyMap((TaskStatus)et, mp); }
     public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
-    { doAcceptAllColumnMap((Task)et, mp); }
+    { doAcceptAllColumnMap((TaskStatus)et, mp); }
     public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
     public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

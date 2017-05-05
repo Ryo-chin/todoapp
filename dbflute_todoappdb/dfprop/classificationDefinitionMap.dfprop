@@ -71,5 +71,19 @@ map:{
             ; comment=DESCRIPTION; orderBy=DISPLAY_ORDER
         }
     }
+
+    # ====================================================================================
+    #                                                                                 Task
+    #                                                                                 ====
+    ; TaskStatus = list:{
+        ; map:{
+            ; topComment=status of task; codeType=String
+        }
+        ; map:{
+            ; table=TASK_STATUS
+            ; code=TASK_STATUS_CODE; name=TASK_STATUS_NAME
+            ; comment=DESCRIPTION; orderBy=DISPLAY_ORDER
+        }
+    }
 }
 # ----------------/

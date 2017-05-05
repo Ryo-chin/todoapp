@@ -1,4 +1,43 @@
 map:{
+    ; 2017/05/05 15:47:06 = map:{
+        ; diffDate = 2017/05/05 15:47:06
+        ; tableCount = map:{
+            ; next = 18
+            ; previous = 17
+        }
+        ; tableDiff = map:{
+            ; TASK_STATUS = map:{
+                ; tableName = TASK_STATUS
+                ; diffType = ADD
+            }
+            ; TASK = map:{
+                ; tableName = TASK
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; TASK_STATUS_CODE = map:{
+                        ; columnName = TASK_STATUS_CODE
+                        ; diffType = ADD
+                    }
+                    ; DONE_FLG = map:{
+                        ; columnName = DONE_FLG
+                        ; diffType = DELETE
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; FK_TASK_TASK_STATUS_TASK_STATUS_CODE = map:{
+                        ; constraintName = FK_TASK_TASK_STATUS_TASK_STATUS_CODE
+                        ; diffType = ADD
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_TASK_TASK_STATUS_TASK_STATUS_CODE = map:{
+                        ; constraintName = FK_TASK_TASK_STATUS_TASK_STATUS_CODE
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
     ; 2017/05/04 02:15:40 = map:{
         ; diffDate = 2017/05/04 02:15:40
         ; tableDiff = map:{

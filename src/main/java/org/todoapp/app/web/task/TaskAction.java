@@ -3,7 +3,9 @@ package org.todoapp.app.web.task;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.JsonResponse;
+import org.lastaflute.web.servlet.request.ResponseManager;
 import org.todoapp.app.web.base.TodoappBaseAction;
+import org.todoapp.dbflute.allcommon.CDef;
 import org.todoapp.dbflute.exbhv.TaskBhv;
 import org.todoapp.dbflute.exentity.Task;
 
@@ -24,6 +26,8 @@ public class TaskAction extends TodoappBaseAction {
 
     @Resource
     private TaskBhv taskBhv;
+    @Resource
+    private ResponseManager responseManager;
 
     // ===================================================================================
     //                                                                             Execute
@@ -42,8 +46,28 @@ public class TaskAction extends TodoappBaseAction {
         validateApi(body, messages -> {});
         Task task = new Task();
         task.setDescription(body.description);
-        task.setDoneFlg_False();
+        task.setTaskStatusCode_NotStartedYet();
         taskBhv.insert(task);
+        return asJson(new TaskResult(task));
+    }
+
+    @Execute
+    public JsonResponse<TaskResult> update(TaskUpdateBody body) {
+        String targetStatusCode = body.statusCode;
+
+        validateApi(body, messages -> {
+            List<String> statusList = CDef.TaskStatus.listAll().stream().map(CDef.TaskStatus::code).collect(Collectors.toList());
+            if (!statusList.contains(targetStatusCode)) {
+                throw responseManager.new400(String.format("invalid task status code: %s", targetStatusCode));
+            }
+        });
+
+        CDef.TaskStatus status = CDef.TaskStatus.codeOf(targetStatusCode);
+        Task task = new Task();
+        task.setTaskId(body.taskId);
+        task.setDescription(body.description);
+        task.setTaskStatusCodeAsTaskStatus(status);
+        taskBhv.update(task);
         return asJson(new TaskResult(task));
     }
 }

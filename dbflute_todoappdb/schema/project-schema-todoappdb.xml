@@ -597,8 +597,26 @@
             pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="TEXT" javaType="String"
             name="DESCRIPTION" required="true" size="65535" type="LONGVARCHAR"/>
+        <column comment="" dbType="CHAR" javaType="String"
+            name="TASK_STATUS_CODE" required="true" size="3" type="CHAR"/>
+        <foreign-key foreignSchema="todoappdb.$$NoNameSchema$$"
+            foreignTable="TASK_STATUS" name="FK_TASK_TASK_STATUS_TASK_STATUS_CODE">
+            <reference foreign="TASK_STATUS_CODE" local="TASK_STATUS_CODE"/>
+        </foreign-key>
+        <index name="FK_TASK_TASK_STATUS_TASK_STATUS_CODE">
+            <index-column name="TASK_STATUS_CODE" position="1"/>
+        </index>
+    </table>
+    <table name="TASK_STATUS" schema="todoappdb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="CHAR" javaType="String"
+            name="TASK_STATUS_CODE" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="TASK_STATUS_NAME" required="true" size="50" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="DESCRIPTION" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="INT" javaType="Integer"
-            name="DONE_FLG" required="true" size="10" type="INTEGER"/>
+            name="DISPLAY_ORDER" required="true" size="10" type="INTEGER"/>
     </table>
     <table comment="退会理由 : 会員に選ばせる定型的な退会理由のマスタ。そういえば、これ表示順カラムがないですねぇ..."
         name="WITHDRAWAL_REASON" schema="todoappdb.$$NoNameSchema$$" type="TABLE">

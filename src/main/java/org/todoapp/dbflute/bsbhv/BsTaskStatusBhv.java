@@ -15,71 +15,59 @@
  */
 package org.todoapp.dbflute.bsbhv;
 
-import org.dbflute.Entity;
-import org.dbflute.bhv.AbstractBehaviorWritable;
-import org.dbflute.bhv.readable.CBCall;
-import org.dbflute.bhv.readable.EntityRowHandler;
-import org.dbflute.bhv.referrer.ReferrerLoaderHandler;
-import org.dbflute.bhv.writable.DeleteOption;
-import org.dbflute.bhv.writable.InsertOption;
-import org.dbflute.bhv.writable.QueryInsertSetupper;
-import org.dbflute.bhv.writable.UpdateOption;
-import org.dbflute.bhv.writable.WritableOptionCall;
-import org.dbflute.cbean.ConditionBean;
-import org.dbflute.cbean.chelper.HpSLSFunction;
-import org.dbflute.cbean.result.ListResultBean;
-import org.dbflute.cbean.result.PagingResultBean;
-import org.dbflute.exception.DangerousResultSizeException;
-import org.dbflute.exception.EntityAlreadyDeletedException;
-import org.dbflute.exception.EntityAlreadyExistsException;
-import org.dbflute.exception.EntityDuplicatedException;
-import org.dbflute.exception.NonQueryDeleteNotAllowedException;
-import org.dbflute.exception.NonQueryUpdateNotAllowedException;
-import org.dbflute.exception.SelectEntityConditionNotFoundException;
-import org.dbflute.optional.OptionalEntity;
-import org.dbflute.outsidesql.executor.OutsideSqlAllFacadeExecutor;
-import org.todoapp.dbflute.bsbhv.loader.LoaderOfTask;
-import org.todoapp.dbflute.bsentity.dbmeta.TaskDbm;
-import org.todoapp.dbflute.cbean.TaskCB;
-import org.todoapp.dbflute.exbhv.TaskBhv;
-import org.todoapp.dbflute.exentity.Task;
-import org.todoapp.dbflute.exentity.TaskStatus;
-
 import java.util.List;
 
+import org.dbflute.*;
+import org.dbflute.bhv.*;
+import org.dbflute.bhv.readable.*;
+import org.dbflute.bhv.writable.*;
+import org.dbflute.bhv.referrer.*;
+import org.dbflute.cbean.*;
+import org.dbflute.cbean.chelper.HpSLSFunction;
+import org.dbflute.cbean.result.*;
+import org.dbflute.exception.*;
+import org.dbflute.optional.OptionalEntity;
+import org.dbflute.outsidesql.executor.*;
+import org.todoapp.dbflute.allcommon.CDef;
+import org.todoapp.dbflute.exbhv.*;
+import org.todoapp.dbflute.bsbhv.loader.*;
+import org.todoapp.dbflute.exentity.*;
+import org.todoapp.dbflute.bsentity.dbmeta.*;
+import org.todoapp.dbflute.cbean.*;
+
 /**
- * The behavior of TASK as TABLE. <br>
+ * The behavior of TASK_STATUS as TABLE. <br>
  * <pre>
  * [primary key]
- *     TASK_ID
+ *     TASK_STATUS_CODE
  *
  * [column]
- *     TASK_ID, DESCRIPTION, TASK_STATUS_CODE
+ *     TASK_STATUS_CODE, TASK_STATUS_NAME, DESCRIPTION, DISPLAY_ORDER
  *
  * [sequence]
  *     
  *
  * [identity]
- *     TASK_ID
+ *     
  *
  * [version-no]
  *     
  *
  * [foreign table]
- *     TASK_STATUS
+ *     
  *
  * [referrer table]
- *     
+ *     TASK
  *
  * [foreign property]
- *     taskStatus
+ *     
  *
  * [referrer property]
- *     
+ *     taskList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
+public abstract class BsTaskStatusBhv extends AbstractBehaviorWritable<TaskStatus, TaskStatusCB> {
 
     // ===================================================================================
     //                                                                          Definition
@@ -91,15 +79,15 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
     //                                                                             DB Meta
     //                                                                             =======
     /** {@inheritDoc} */
-    public TaskDbm asDBMeta() { return TaskDbm.getInstance(); }
+    public TaskStatusDbm asDBMeta() { return TaskStatusDbm.getInstance(); }
     /** {@inheritDoc} */
-    public String asTableDbName() { return "TASK"; }
+    public String asTableDbName() { return "TASK_STATUS"; }
 
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public TaskCB newConditionBean() { return new TaskCB(); }
+    public TaskStatusCB newConditionBean() { return new TaskStatusCB(); }
 
     // ===================================================================================
     //                                                                        Count Select
@@ -108,14 +96,14 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * Select the count of uniquely-selected records by the condition-bean. {IgnorePagingCondition, IgnoreSpecifyColumn}<br>
      * SpecifyColumn is ignored but you can use it only to remove text type column for union's distinct.
      * <pre>
-     * <span style="color: #70226C">int</span> count = <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">selectCount</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #70226C">int</span> count = <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">selectCount</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...
      * });
      * </pre>
-     * @param cbLambda The callback for condition-bean of Task. (NotNull)
+     * @param cbLambda The callback for condition-bean of TaskStatus. (NotNull)
      * @return The count for the condition. (NotMinus)
      */
-    public int selectCount(CBCall<TaskCB> cbLambda) {
+    public int selectCount(CBCall<TaskStatusCB> cbLambda) {
         return facadeSelectCount(createCB(cbLambda));
     }
 
@@ -129,38 +117,38 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * <span style="color: #AD4747; font-size: 120%">If it might be no data, isPresent() and orElse(), ...</span>
      * <pre>
      * <span style="color: #3F7E5E">// if the data always exists as your business rule</span>
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">selectEntity</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">selectEntity</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...
-     * }).<span style="color: #CC4747">alwaysPresent</span>(<span style="color: #553000">task</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * }).<span style="color: #CC4747">alwaysPresent</span>(<span style="color: #553000">taskStatus</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #3F7E5E">// called if present, or exception</span>
-     *     ... = <span style="color: #553000">task</span>.get...
+     *     ... = <span style="color: #553000">taskStatus</span>.get...
      * });
      * 
      * <span style="color: #3F7E5E">// if it might be no data, ...</span>
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">selectEntity</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">selectEntity</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...
-     * }).<span style="color: #CC4747">ifPresent</span>(<span style="color: #553000">task</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * }).<span style="color: #CC4747">ifPresent</span>(<span style="color: #553000">taskStatus</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #3F7E5E">// called if present</span>
-     *     ... = <span style="color: #553000">task</span>.get...
+     *     ... = <span style="color: #553000">taskStatus</span>.get...
      * }).<span style="color: #994747">orElse</span>(() <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #3F7E5E">// called if not present</span>
      * });
      * </pre>
-     * @param cbLambda The callback for condition-bean of Task. (NotNull)
+     * @param cbLambda The callback for condition-bean of TaskStatus. (NotNull)
      * @return The optional entity selected by the condition. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public OptionalEntity<Task> selectEntity(CBCall<TaskCB> cbLambda) {
+    public OptionalEntity<TaskStatus> selectEntity(CBCall<TaskStatusCB> cbLambda) {
         return facadeSelectEntity(createCB(cbLambda));
     }
 
-    protected OptionalEntity<Task> facadeSelectEntity(TaskCB cb) {
+    protected OptionalEntity<TaskStatus> facadeSelectEntity(TaskStatusCB cb) {
         return doSelectOptionalEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends Task> OptionalEntity<ENTITY> doSelectOptionalEntity(TaskCB cb, Class<? extends ENTITY> tp) {
+    protected <ENTITY extends TaskStatus> OptionalEntity<ENTITY> doSelectOptionalEntity(TaskStatusCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -170,46 +158,46 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * Select the entity by the condition-bean with deleted check. <br>
      * <span style="color: #AD4747; font-size: 120%">If the data is always present as your business rule, this method is good.</span>
      * <pre>
-     * Task <span style="color: #553000">task</span> = <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">selectEntityWithDeletedCheck</span>(cb <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> cb.acceptPK(1));
-     * ... = <span style="color: #553000">task</span>.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
+     * TaskStatus <span style="color: #553000">taskStatus</span> = <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">selectEntityWithDeletedCheck</span>(cb <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> cb.acceptPK(1));
+     * ... = <span style="color: #553000">taskStatus</span>.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
-     * @param cbLambda The callback for condition-bean of Task. (NotNull)
+     * @param cbLambda The callback for condition-bean of TaskStatus. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public Task selectEntityWithDeletedCheck(CBCall<TaskCB> cbLambda) {
+    public TaskStatus selectEntityWithDeletedCheck(CBCall<TaskStatusCB> cbLambda) {
         return facadeSelectEntityWithDeletedCheck(createCB(cbLambda));
     }
 
     /**
      * Select the entity by the primary-key value.
-     * @param taskId : PK, ID, NotNull, BIGINT(19). (NotNull)
+     * @param taskStatusCode : PK, NotNull, CHAR(3), classification=TaskStatus. (NotNull)
      * @return The optional entity selected by the PK. (NotNull: if no data, empty entity)
      * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public OptionalEntity<Task> selectByPK(Long taskId) {
-        return facadeSelectByPK(taskId);
+    public OptionalEntity<TaskStatus> selectByPK(CDef.TaskStatus taskStatusCode) {
+        return facadeSelectByPK(taskStatusCode);
     }
 
-    protected OptionalEntity<Task> facadeSelectByPK(Long taskId) {
-        return doSelectOptionalByPK(taskId, typeOfSelectedEntity());
+    protected OptionalEntity<TaskStatus> facadeSelectByPK(CDef.TaskStatus taskStatusCode) {
+        return doSelectOptionalByPK(taskStatusCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends Task> ENTITY doSelectByPK(Long taskId, Class<? extends ENTITY> tp) {
-        return doSelectEntity(xprepareCBAsPK(taskId), tp);
+    protected <ENTITY extends TaskStatus> ENTITY doSelectByPK(CDef.TaskStatus taskStatusCode, Class<? extends ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(taskStatusCode), tp);
     }
 
-    protected <ENTITY extends Task> OptionalEntity<ENTITY> doSelectOptionalByPK(Long taskId, Class<? extends ENTITY> tp) {
-        return createOptionalEntity(doSelectByPK(taskId, tp), taskId);
+    protected <ENTITY extends TaskStatus> OptionalEntity<ENTITY> doSelectOptionalByPK(CDef.TaskStatus taskStatusCode, Class<? extends ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(taskStatusCode, tp), taskStatusCode);
     }
 
-    protected TaskCB xprepareCBAsPK(Long taskId) {
-        assertObjectNotNull("taskId", taskId);
-        return newConditionBean().acceptPK(taskId);
+    protected TaskStatusCB xprepareCBAsPK(CDef.TaskStatus taskStatusCode) {
+        assertObjectNotNull("taskStatusCode", taskStatusCode);
+        return newConditionBean().acceptPK(taskStatusCode);
     }
 
     // ===================================================================================
@@ -218,19 +206,19 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
     /**
      * Select the list as result bean.
      * <pre>
-     * ListResultBean&lt;Task&gt; <span style="color: #553000">taskList</span> = <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">selectList</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * ListResultBean&lt;TaskStatus&gt; <span style="color: #553000">taskStatusList</span> = <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">selectList</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...;
      *     <span style="color: #553000">cb</span>.query().addOrderBy...;
      * });
-     * <span style="color: #70226C">for</span> (Task <span style="color: #553000">task</span> : <span style="color: #553000">taskList</span>) {
-     *     ... = <span style="color: #553000">task</span>.get...;
+     * <span style="color: #70226C">for</span> (TaskStatus <span style="color: #553000">taskStatus</span> : <span style="color: #553000">taskStatusList</span>) {
+     *     ... = <span style="color: #553000">taskStatus</span>.get...;
      * }
      * </pre>
-     * @param cbLambda The callback for condition-bean of Task. (NotNull)
+     * @param cbLambda The callback for condition-bean of TaskStatus. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
      * @throws DangerousResultSizeException When the result size is over the specified safety size.
      */
-    public ListResultBean<Task> selectList(CBCall<TaskCB> cbLambda) {
+    public ListResultBean<TaskStatus> selectList(CBCall<TaskStatusCB> cbLambda) {
         return facadeSelectList(createCB(cbLambda));
     }
 
@@ -244,7 +232,7 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * Select the page as result bean. <br>
      * (both count-select and paging-select are executed)
      * <pre>
-     * PagingResultBean&lt;Task&gt; <span style="color: #553000">page</span> = <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">selectPage</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * PagingResultBean&lt;TaskStatus&gt; <span style="color: #553000">page</span> = <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">selectPage</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...
      *     <span style="color: #553000">cb</span>.query().addOrderBy...
      *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
@@ -254,15 +242,15 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * <span style="color: #70226C">boolean</span> isExistPrePage = <span style="color: #553000">page</span>.isExistPrePage();
      * <span style="color: #70226C">boolean</span> isExistNextPage = <span style="color: #553000">page</span>.isExistNextPage();
      * ...
-     * <span style="color: #70226C">for</span> (Task task : <span style="color: #553000">page</span>) {
-     *     ... = task.get...;
+     * <span style="color: #70226C">for</span> (TaskStatus taskStatus : <span style="color: #553000">page</span>) {
+     *     ... = taskStatus.get...;
      * }
      * </pre>
-     * @param cbLambda The callback for condition-bean of Task. (NotNull)
+     * @param cbLambda The callback for condition-bean of TaskStatus. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
      * @throws DangerousResultSizeException When the result size is over the specified safety size.
      */
-    public PagingResultBean<Task> selectPage(CBCall<TaskCB> cbLambda) {
+    public PagingResultBean<TaskStatus> selectPage(CBCall<TaskStatusCB> cbLambda) {
         return facadeSelectPage(createCB(cbLambda));
     }
 
@@ -272,16 +260,16 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
     /**
      * Select the cursor by the condition-bean.
      * <pre>
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">selectCursor</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">selectCursor</span>(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().set...
      * }, <span style="color: #553000">member</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     ... = <span style="color: #553000">member</span>.getMemberName();
      * });
      * </pre>
-     * @param cbLambda The callback for condition-bean of Task. (NotNull)
-     * @param entityLambda The handler of entity row of Task. (NotNull)
+     * @param cbLambda The callback for condition-bean of TaskStatus. (NotNull)
+     * @param entityLambda The handler of entity row of TaskStatus. (NotNull)
      */
-    public void selectCursor(CBCall<TaskCB> cbLambda, EntityRowHandler<Task> entityLambda) {
+    public void selectCursor(CBCall<TaskStatusCB> cbLambda, EntityRowHandler<TaskStatus> entityLambda) {
         facadeSelectCursor(createCB(cbLambda), entityLambda);
     }
 
@@ -292,7 +280,7 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * Select the scalar value derived by a function from uniquely-selected records. <br>
      * You should call a function method after this method called like as follows:
      * <pre>
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">selectScalar</span>(Date.class).max(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">selectScalar</span>(Date.class).max(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">column...</span>; <span style="color: #3F7E5E">// required for the function</span>
      *     <span style="color: #553000">cb</span>.query().set...
      * });
@@ -301,7 +289,7 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> HpSLSFunction<TaskCB, RESULT> selectScalar(Class<RESULT> resultType) {
+    public <RESULT> HpSLSFunction<TaskStatusCB, RESULT> selectScalar(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
 
@@ -346,12 +334,12 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
      * The condition-bean, which the set-upper provides, has order by FK before callback.
-     * @param taskList The entity list of task. (NotNull)
+     * @param taskStatusList The entity list of taskStatus. (NotNull)
      * @param loaderLambda The callback to handle the referrer loader for actually loading referrer. (NotNull)
      */
-    public void load(List<Task> taskList, ReferrerLoaderHandler<LoaderOfTask> loaderLambda) {
-        xassLRArg(taskList, loaderLambda);
-        loaderLambda.handle(new LoaderOfTask().ready(taskList, _behaviorSelector));
+    public void load(List<TaskStatus> taskStatusList, ReferrerLoaderHandler<LoaderOfTaskStatus> loaderLambda) {
+        xassLRArg(taskStatusList, loaderLambda);
+        loaderLambda.handle(new LoaderOfTaskStatus().ready(taskStatusList, _behaviorSelector));
     }
 
     /**
@@ -379,35 +367,91 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
      * The condition-bean, which the set-upper provides, has order by FK before callback.
-     * @param task The entity of task. (NotNull)
+     * @param taskStatus The entity of taskStatus. (NotNull)
      * @param loaderLambda The callback to handle the referrer loader for actually loading referrer. (NotNull)
      */
-    public void load(Task task, ReferrerLoaderHandler<LoaderOfTask> loaderLambda) {
-        xassLRArg(task, loaderLambda);
-        loaderLambda.handle(new LoaderOfTask().ready(xnewLRAryLs(task), _behaviorSelector));
+    public void load(TaskStatus taskStatus, ReferrerLoaderHandler<LoaderOfTaskStatus> loaderLambda) {
+        xassLRArg(taskStatus, loaderLambda);
+        loaderLambda.handle(new LoaderOfTaskStatus().ready(xnewLRAryLs(taskStatus), _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of taskList by the set-upper of referrer. <br>
+     * TASK by TASK_STATUS_CODE, named 'taskList'.
+     * <pre>
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">loadTask</span>(<span style="color: #553000">taskStatusList</span>, <span style="color: #553000">taskCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">taskCB</span>.setupSelect...
+     *     <span style="color: #553000">taskCB</span>.query().set...
+     *     <span style="color: #553000">taskCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * <span style="color: #70226C">for</span> (TaskStatus taskStatus : <span style="color: #553000">taskStatusList</span>) {
+     *     ... = taskStatus.<span style="color: #CC4747">getTaskList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setTaskStatusCode_InScope(pkList);
+     * cb.query().addOrderBy_TaskStatusCode_Asc();
+     * </pre>
+     * @param taskStatusList The entity list of taskStatus. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<Task> loadTask(List<TaskStatus> taskStatusList, ReferrerConditionSetupper<TaskCB> refCBLambda) {
+        xassLRArg(taskStatusList, refCBLambda);
+        return doLoadTask(taskStatusList, new LoadReferrerOption<TaskCB, Task>().xinit(refCBLambda));
+    }
+
+    /**
+     * Load referrer of taskList by the set-upper of referrer. <br>
+     * TASK by TASK_STATUS_CODE, named 'taskList'.
+     * <pre>
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">loadTask</span>(<span style="color: #553000">taskStatus</span>, <span style="color: #553000">taskCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">taskCB</span>.setupSelect...
+     *     <span style="color: #553000">taskCB</span>.query().set...
+     *     <span style="color: #553000">taskCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = <span style="color: #553000">taskStatus</span>.<span style="color: #CC4747">getTaskList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setTaskStatusCode_InScope(pkList);
+     * cb.query().addOrderBy_TaskStatusCode_Asc();
+     * </pre>
+     * @param taskStatus The entity of taskStatus. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<Task> loadTask(TaskStatus taskStatus, ReferrerConditionSetupper<TaskCB> refCBLambda) {
+        xassLRArg(taskStatus, refCBLambda);
+        return doLoadTask(xnewLRLs(taskStatus), new LoadReferrerOption<TaskCB, Task>().xinit(refCBLambda));
+    }
+
+    protected NestedReferrerListGateway<Task> doLoadTask(List<TaskStatus> taskStatusList, LoadReferrerOption<TaskCB, Task> option) {
+        return helpLoadReferrerInternally(taskStatusList, option, "taskList");
     }
 
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
-    /**
-     * Pull out the list of foreign table 'TaskStatus'.
-     * @param taskList The list of task. (NotNull, EmptyAllowed)
-     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<TaskStatus> pulloutTaskStatus(List<Task> taskList)
-    { return helpPulloutInternally(taskList, "taskStatus"); }
-
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
     /**
-     * Extract the value list of (single) primary key taskId.
-     * @param taskList The list of task. (NotNull, EmptyAllowed)
+     * Extract the value list of (single) primary key taskStatusCode.
+     * @param taskStatusList The list of taskStatus. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Long> extractTaskIdList(List<Task> taskList)
-    { return helpExtractListInternally(taskList, "taskId"); }
+    public List<String> extractTaskStatusCodeList(List<TaskStatus> taskStatusList)
+    { return helpExtractListInternally(taskStatusList, "taskStatusCode"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -415,80 +459,80 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
     /**
      * Insert the entity modified-only. (DefaultConstraintsEnabled)
      * <pre>
-     * Task task = <span style="color: #70226C">new</span> Task();
+     * TaskStatus taskStatus = <span style="color: #70226C">new</span> TaskStatus();
      * <span style="color: #3F7E5E">// if auto-increment, you don't need to set the PK value</span>
-     * task.setFoo...(value);
-     * task.setBar...(value);
+     * taskStatus.setFoo...(value);
+     * taskStatus.setBar...(value);
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//task.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//task.set...;</span>
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">insert</span>(task);
-     * ... = task.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
+     * <span style="color: #3F7E5E">//taskStatus.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//taskStatus.set...;</span>
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">insert</span>(taskStatus);
+     * ... = taskStatus.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param task The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param taskStatus The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void insert(Task task) {
-        doInsert(task, null);
+    public void insert(TaskStatus taskStatus) {
+        doInsert(taskStatus, null);
     }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
      * By PK as default, and also you can update by unique keys using entity's uniqueOf().
      * <pre>
-     * Task task = <span style="color: #70226C">new</span> Task();
-     * task.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * task.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * TaskStatus taskStatus = <span style="color: #70226C">new</span> TaskStatus();
+     * taskStatus.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * taskStatus.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//task.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//task.set...;</span>
+     * <span style="color: #3F7E5E">//taskStatus.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//taskStatus.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
-     * task.<span style="color: #CC4747">setVersionNo</span>(value);
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">update</span>(task);
+     * taskStatus.<span style="color: #CC4747">setVersionNo</span>(value);
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">update</span>(taskStatus);
      * </pre>
-     * @param task The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param taskStatus The entity of update. (NotNull, PrimaryKeyNotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(Task task) {
-        doUpdate(task, null);
+    public void update(TaskStatus taskStatus) {
+        doUpdate(taskStatus, null);
     }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br>
      * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
-     * @param task The entity of insert or update. (NotNull, ...depends on insert or update)
+     * @param taskStatus The entity of insert or update. (NotNull, ...depends on insert or update)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void insertOrUpdate(Task task) {
-        doInsertOrUpdate(task, null, null);
+    public void insertOrUpdate(TaskStatus taskStatus) {
+        doInsertOrUpdate(taskStatus, null, null);
     }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl) <br>
      * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
      * <pre>
-     * Task task = <span style="color: #70226C">new</span> Task();
-     * task.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * TaskStatus taskStatus = <span style="color: #70226C">new</span> TaskStatus();
+     * taskStatus.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
-     * task.<span style="color: #CC4747">setVersionNo</span>(value);
+     * taskStatus.<span style="color: #CC4747">setVersionNo</span>(value);
      * <span style="color: #70226C">try</span> {
-     *     <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">delete</span>(task);
+     *     <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">delete</span>(taskStatus);
      * } <span style="color: #70226C">catch</span> (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
-     * @param task The entity of delete. (NotNull, PrimaryKeyNotNull)
+     * @param taskStatus The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void delete(Task task) {
-        doDelete(task, null);
+    public void delete(TaskStatus taskStatus) {
+        doDelete(taskStatus, null);
     }
 
     // ===================================================================================
@@ -500,26 +544,26 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * <p><span style="color: #CC4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * <span style="color: #70226C">for</span> (... : ...) {
-     *     Task task = <span style="color: #70226C">new</span> Task();
-     *     task.setFooName("foo");
+     *     TaskStatus taskStatus = <span style="color: #70226C">new</span> TaskStatus();
+     *     taskStatus.setFooName("foo");
      *     <span style="color: #70226C">if</span> (...) {
-     *         task.setFooPrice(123);
+     *         taskStatus.setFooPrice(123);
      *     }
      *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are registered</span>
      *     <span style="color: #3F7E5E">// FOO_PRICE not-called in any entities are registered as null without default value</span>
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
-     *     taskList.add(task);
+     *     taskStatusList.add(taskStatus);
      * }
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">batchInsert</span>(taskList);
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">batchInsert</span>(taskStatusList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
      * (When you use the (normal) insert(), you can get the incremented value from your entity)</p>
-     * @param taskList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNullAllowed: when auto-increment)
+     * @param taskStatusList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNullAllowed: when auto-increment)
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
-    public int[] batchInsert(List<Task> taskList) {
-        return doBatchInsert(taskList, null);
+    public int[] batchInsert(List<TaskStatus> taskStatusList) {
+        return doBatchInsert(taskStatusList, null);
     }
 
     /**
@@ -528,37 +572,37 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * <span style="color: #CC4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
-     *     Task task = <span style="color: #70226C">new</span> Task();
-     *     task.setFooName("foo");
+     *     TaskStatus taskStatus = <span style="color: #70226C">new</span> TaskStatus();
+     *     taskStatus.setFooName("foo");
      *     <span style="color: #70226C">if</span> (...) {
-     *         task.setFooPrice(123);
+     *         taskStatus.setFooPrice(123);
      *     } <span style="color: #70226C">else</span> {
-     *         task.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
-     *         <span style="color: #3F7E5E">//task.setFooDate(...); // *not allowed, fragmented</span>
+     *         taskStatus.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//taskStatus.setFooDate(...); // *not allowed, fragmented</span>
      *     }
      *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
-     *     taskList.add(task);
+     *     taskStatusList.add(taskStatus);
      * }
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">batchUpdate</span>(taskList);
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">batchUpdate</span>(taskStatusList);
      * </pre>
-     * @param taskList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param taskStatusList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchUpdate(List<Task> taskList) {
-        return doBatchUpdate(taskList, null);
+    public int[] batchUpdate(List<TaskStatus> taskStatusList) {
+        return doBatchUpdate(taskStatusList, null);
     }
 
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br>
      * This method uses executeBatch() of java.sql.PreparedStatement.
-     * @param taskList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param taskStatusList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDelete(List<Task> taskList) {
-        return doBatchDelete(taskList, null);
+    public int[] batchDelete(List<TaskStatus> taskStatusList) {
+        return doBatchDelete(taskStatusList, null);
     }
 
     // ===================================================================================
@@ -567,8 +611,8 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">queryInsert</span>(new QueryInsertSetupper&lt;Task, TaskCB&gt;() {
-     *     public ConditionBean setup(Task entity, TaskCB intoCB) {
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">queryInsert</span>(new QueryInsertSetupper&lt;TaskStatus, TaskStatusCB&gt;() {
+     *     public ConditionBean setup(TaskStatus entity, TaskStatusCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -590,48 +634,48 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * @param manyArgLambda The callback to set up query-insert. (NotNull)
      * @return The inserted count.
      */
-    public int queryInsert(QueryInsertSetupper<Task, TaskCB> manyArgLambda) {
+    public int queryInsert(QueryInsertSetupper<TaskStatus, TaskStatusCB> manyArgLambda) {
         return doQueryInsert(manyArgLambda, null);
     }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
      * <pre>
-     * Task task = <span style="color: #70226C">new</span> Task();
+     * TaskStatus taskStatus = <span style="color: #70226C">new</span> TaskStatus();
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
-     * <span style="color: #3F7E5E">//task.setPK...(value);</span>
-     * task.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">//taskStatus.setPK...(value);</span>
+     * taskStatus.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//task.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//task.set...;</span>
+     * <span style="color: #3F7E5E">//taskStatus.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//taskStatus.set...;</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//task.setVersionNo(value);</span>
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">queryUpdate</span>(task, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #3F7E5E">//taskStatus.setVersionNo(value);</span>
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">queryUpdate</span>(taskStatus, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().setFoo...
      * });
      * </pre>
-     * @param task The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
-     * @param cbLambda The callback for condition-bean of Task. (NotNull)
+     * @param taskStatus The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
+     * @param cbLambda The callback for condition-bean of TaskStatus. (NotNull)
      * @return The updated count.
      * @throws NonQueryUpdateNotAllowedException When the query has no condition.
      */
-    public int queryUpdate(Task task, CBCall<TaskCB> cbLambda) {
-        return doQueryUpdate(task, createCB(cbLambda), null);
+    public int queryUpdate(TaskStatus taskStatus, CBCall<TaskStatusCB> cbLambda) {
+        return doQueryUpdate(taskStatus, createCB(cbLambda), null);
     }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">queryDelete</span>(task, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">queryDelete</span>(taskStatus, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().setFoo...
      * });
      * </pre>
-     * @param cbLambda The callback for condition-bean of Task. (NotNull)
+     * @param cbLambda The callback for condition-bean of TaskStatus. (NotNull)
      * @return The deleted count.
      * @throws NonQueryDeleteNotAllowedException When the query has no condition.
      */
-    public int queryDelete(CBCall<TaskCB> cbLambda) {
+    public int queryDelete(CBCall<TaskStatusCB> cbLambda) {
         return doQueryDelete(createCB(cbLambda), null);
     }
 
@@ -646,22 +690,22 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br>
      * Other specifications are same as insert(entity).
      * <pre>
-     * Task task = <span style="color: #70226C">new</span> Task();
+     * TaskStatus taskStatus = <span style="color: #70226C">new</span> TaskStatus();
      * <span style="color: #3F7E5E">// if auto-increment, you don't need to set the PK value</span>
-     * task.setFoo...(value);
-     * task.setBar...(value);
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">varyingInsert</span>(task, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * taskStatus.setFoo...(value);
+     * taskStatus.setBar...(value);
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">varyingInsert</span>(taskStatus, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      *     <span style="color: #553000">op</span>.disableCommonColumnAutoSetup();
      * });
-     * ... = task.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
+     * ... = taskStatus.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param task The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param taskStatus The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param opLambda The callback for option of insert for varying requests. (NotNull)
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingInsert(Task task, WritableOptionCall<TaskCB, InsertOption<TaskCB>> opLambda) {
-        doInsert(task, createInsertOption(opLambda));
+    public void varyingInsert(TaskStatus taskStatus, WritableOptionCall<TaskStatusCB, InsertOption<TaskStatusCB>> opLambda) {
+        doInsert(taskStatus, createInsertOption(opLambda));
     }
 
     /**
@@ -669,53 +713,53 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
      * Other specifications are same as update(entity).
      * <pre>
-     * Task task = <span style="color: #70226C">new</span> Task();
-     * task.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * task.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * TaskStatus taskStatus = <span style="color: #70226C">new</span> TaskStatus();
+     * taskStatus.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * taskStatus.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
-     * task.<span style="color: #CC4747">setVersionNo</span>(value);
+     * taskStatus.<span style="color: #CC4747">setVersionNo</span>(value);
      * <span style="color: #3F7E5E">// you can update by self calculation values</span>
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">varyingUpdate</span>(task, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">varyingUpdate</span>(taskStatus, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">op</span>.self(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *         <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">columnXxxCount()</span>;
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
      * });
      * </pre>
-     * @param task The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param taskStatus The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingUpdate(Task task, WritableOptionCall<TaskCB, UpdateOption<TaskCB>> opLambda) {
-        doUpdate(task, createUpdateOption(opLambda));
+    public void varyingUpdate(TaskStatus taskStatus, WritableOptionCall<TaskStatusCB, UpdateOption<TaskStatusCB>> opLambda) {
+        doUpdate(taskStatus, createUpdateOption(opLambda));
     }
 
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br>
      * Other specifications are same as insertOrUpdate(entity).
-     * @param task The entity of insert or update. (NotNull)
+     * @param taskStatus The entity of insert or update. (NotNull)
      * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
      * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingInsertOrUpdate(Task task, WritableOptionCall<TaskCB, InsertOption<TaskCB>> insertOpLambda, WritableOptionCall<TaskCB, UpdateOption<TaskCB>> updateOpLambda) {
-        doInsertOrUpdate(task, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
+    public void varyingInsertOrUpdate(TaskStatus taskStatus, WritableOptionCall<TaskStatusCB, InsertOption<TaskStatusCB>> insertOpLambda, WritableOptionCall<TaskStatusCB, UpdateOption<TaskStatusCB>> updateOpLambda) {
+        doInsertOrUpdate(taskStatus, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br>
      * Now a valid option does not exist. <br>
      * Other specifications are same as delete(entity).
-     * @param task The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param taskStatus The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(Task task, WritableOptionCall<TaskCB, DeleteOption<TaskCB>> opLambda) {
-        doDelete(task, createDeleteOption(opLambda));
+    public void varyingDelete(TaskStatus taskStatus, WritableOptionCall<TaskStatusCB, DeleteOption<TaskStatusCB>> opLambda) {
+        doDelete(taskStatus, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -726,12 +770,12 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * For example, disableCommonColumnAutoSetup()
      * , disablePrimaryKeyIdentity(), limitBatchInsertLogging(). <br>
      * Other specifications are same as batchInsert(entityList).
-     * @param taskList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param taskStatusList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param opLambda The callback for option of insert for varying requests. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchInsert(List<Task> taskList, WritableOptionCall<TaskCB, InsertOption<TaskCB>> opLambda) {
-        return doBatchInsert(taskList, createInsertOption(opLambda));
+    public int[] varyingBatchInsert(List<TaskStatus> taskStatusList, WritableOptionCall<TaskStatusCB, InsertOption<TaskStatusCB>> opLambda) {
+        return doBatchInsert(taskStatusList, createInsertOption(opLambda));
     }
 
     /**
@@ -739,24 +783,24 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br>
      * Other specifications are same as batchUpdate(entityList).
-     * @param taskList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param taskStatusList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchUpdate(List<Task> taskList, WritableOptionCall<TaskCB, UpdateOption<TaskCB>> opLambda) {
-        return doBatchUpdate(taskList, createUpdateOption(opLambda));
+    public int[] varyingBatchUpdate(List<TaskStatus> taskStatusList, WritableOptionCall<TaskStatusCB, UpdateOption<TaskStatusCB>> opLambda) {
+        return doBatchUpdate(taskStatusList, createUpdateOption(opLambda));
     }
 
     /**
      * Batch-delete the list with varying requests. <br>
      * For example, limitBatchDeleteLogging(). <br>
      * Other specifications are same as batchDelete(entityList).
-     * @param taskList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param taskStatusList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchDelete(List<Task> taskList, WritableOptionCall<TaskCB, DeleteOption<TaskCB>> opLambda) {
-        return doBatchDelete(taskList, createDeleteOption(opLambda));
+    public int[] varyingBatchDelete(List<TaskStatus> taskStatusList, WritableOptionCall<TaskStatusCB, DeleteOption<TaskStatusCB>> opLambda) {
+        return doBatchDelete(taskStatusList, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -770,7 +814,7 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * @param opLambda The callback for option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
-    public int varyingQueryInsert(QueryInsertSetupper<Task, TaskCB> manyArgLambda, WritableOptionCall<TaskCB, InsertOption<TaskCB>> opLambda) {
+    public int varyingQueryInsert(QueryInsertSetupper<TaskStatus, TaskStatusCB> manyArgLambda, WritableOptionCall<TaskStatusCB, InsertOption<TaskStatusCB>> opLambda) {
         return doQueryInsert(manyArgLambda, createInsertOption(opLambda));
     }
 
@@ -781,14 +825,14 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
-     * Task task = <span style="color: #70226C">new</span> Task();
+     * TaskStatus taskStatus = <span style="color: #70226C">new</span> TaskStatus();
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
-     * <span style="color: #3F7E5E">//task.setPK...(value);</span>
-     * task.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">//taskStatus.setPK...(value);</span>
+     * taskStatus.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//task.setVersionNo(value);</span>
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">varyingQueryUpdate</span>(task, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #3F7E5E">//taskStatus.setVersionNo(value);</span>
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">varyingQueryUpdate</span>(taskStatus, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().setFoo...
      * }, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">op</span>.self(<span style="color: #553000">colCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
@@ -796,14 +840,14 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      *     }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
      * });
      * </pre>
-     * @param task The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
-     * @param cbLambda The callback for condition-bean of Task. (NotNull)
+     * @param taskStatus The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
+     * @param cbLambda The callback for condition-bean of TaskStatus. (NotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
      * @return The updated count.
      * @throws NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
-    public int varyingQueryUpdate(Task task, CBCall<TaskCB> cbLambda, WritableOptionCall<TaskCB, UpdateOption<TaskCB>> opLambda) {
-        return doQueryUpdate(task, createCB(cbLambda), createUpdateOption(opLambda));
+    public int varyingQueryUpdate(TaskStatus taskStatus, CBCall<TaskStatusCB> cbLambda, WritableOptionCall<TaskStatusCB, UpdateOption<TaskStatusCB>> opLambda) {
+        return doQueryUpdate(taskStatus, createCB(cbLambda), createUpdateOption(opLambda));
     }
 
     /**
@@ -811,18 +855,18 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * For example, allowNonQueryDelete(). <br>
      * Other specifications are same as queryDelete(cb).
      * <pre>
-     * <span style="color: #0000C0">taskBhv</span>.<span style="color: #CC4747">queryDelete</span>(task, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     * <span style="color: #0000C0">taskStatusBhv</span>.<span style="color: #CC4747">queryDelete</span>(taskStatus, <span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">cb</span>.query().setFoo...
      * }, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
      *     <span style="color: #553000">op</span>...
      * });
      * </pre>
-     * @param cbLambda The callback for condition-bean of Task. (NotNull)
+     * @param cbLambda The callback for condition-bean of TaskStatus. (NotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @return The deleted count.
      * @throws NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
-    public int varyingQueryDelete(CBCall<TaskCB> cbLambda, WritableOptionCall<TaskCB, DeleteOption<TaskCB>> opLambda) {
+    public int varyingQueryDelete(CBCall<TaskStatusCB> cbLambda, WritableOptionCall<TaskStatusCB, DeleteOption<TaskStatusCB>> opLambda) {
         return doQueryDelete(createCB(cbLambda), createDeleteOption(opLambda));
     }
 
@@ -833,38 +877,38 @@ public abstract class BsTaskBhv extends AbstractBehaviorWritable<Task, TaskCB> {
      * Prepare the all facade executor of outside-SQL to execute it.
      * <pre>
      * <span style="color: #3F7E5E">// main style</span> 
-     * taskBhv.outideSql().selectEntity(pmb); <span style="color: #3F7E5E">// optional</span> 
-     * taskBhv.outideSql().selectList(pmb); <span style="color: #3F7E5E">// ListResultBean</span>
-     * taskBhv.outideSql().selectPage(pmb); <span style="color: #3F7E5E">// PagingResultBean</span>
-     * taskBhv.outideSql().selectPagedListOnly(pmb); <span style="color: #3F7E5E">// ListResultBean</span>
-     * taskBhv.outideSql().selectCursor(pmb, handler); <span style="color: #3F7E5E">// (by handler)</span>
-     * taskBhv.outideSql().execute(pmb); <span style="color: #3F7E5E">// int (updated count)</span>
-     * taskBhv.outideSql().call(pmb); <span style="color: #3F7E5E">// void (pmb has OUT parameters)</span>
+     * taskStatusBhv.outideSql().selectEntity(pmb); <span style="color: #3F7E5E">// optional</span> 
+     * taskStatusBhv.outideSql().selectList(pmb); <span style="color: #3F7E5E">// ListResultBean</span>
+     * taskStatusBhv.outideSql().selectPage(pmb); <span style="color: #3F7E5E">// PagingResultBean</span>
+     * taskStatusBhv.outideSql().selectPagedListOnly(pmb); <span style="color: #3F7E5E">// ListResultBean</span>
+     * taskStatusBhv.outideSql().selectCursor(pmb, handler); <span style="color: #3F7E5E">// (by handler)</span>
+     * taskStatusBhv.outideSql().execute(pmb); <span style="color: #3F7E5E">// int (updated count)</span>
+     * taskStatusBhv.outideSql().call(pmb); <span style="color: #3F7E5E">// void (pmb has OUT parameters)</span>
      *
      * <span style="color: #3F7E5E">// traditional style</span> 
-     * taskBhv.outideSql().traditionalStyle().selectEntity(path, pmb, entityType);
-     * taskBhv.outideSql().traditionalStyle().selectList(path, pmb, entityType);
-     * taskBhv.outideSql().traditionalStyle().selectPage(path, pmb, entityType);
-     * taskBhv.outideSql().traditionalStyle().selectPagedListOnly(path, pmb, entityType);
-     * taskBhv.outideSql().traditionalStyle().selectCursor(path, pmb, handler);
-     * taskBhv.outideSql().traditionalStyle().execute(path, pmb);
+     * taskStatusBhv.outideSql().traditionalStyle().selectEntity(path, pmb, entityType);
+     * taskStatusBhv.outideSql().traditionalStyle().selectList(path, pmb, entityType);
+     * taskStatusBhv.outideSql().traditionalStyle().selectPage(path, pmb, entityType);
+     * taskStatusBhv.outideSql().traditionalStyle().selectPagedListOnly(path, pmb, entityType);
+     * taskStatusBhv.outideSql().traditionalStyle().selectCursor(path, pmb, handler);
+     * taskStatusBhv.outideSql().traditionalStyle().execute(path, pmb);
      *
      * <span style="color: #3F7E5E">// options</span> 
-     * taskBhv.outideSql().removeBlockComment().selectList()
-     * taskBhv.outideSql().removeLineComment().selectList()
-     * taskBhv.outideSql().formatSql().selectList()
+     * taskStatusBhv.outideSql().removeBlockComment().selectList()
+     * taskStatusBhv.outideSql().removeLineComment().selectList()
+     * taskStatusBhv.outideSql().formatSql().selectList()
      * </pre>
      * <p>The invoker of behavior command should be not null when you call this method.</p>
      * @return The new-created all facade executor of outside-SQL. (NotNull)
      */
-    public OutsideSqlAllFacadeExecutor<TaskBhv> outsideSql() {
+    public OutsideSqlAllFacadeExecutor<TaskStatusBhv> outsideSql() {
         return doOutsideSql();
     }
 
     // ===================================================================================
     //                                                                         Type Helper
     //                                                                         ===========
-    protected Class<? extends Task> typeOfSelectedEntity() { return Task.class; }
-    protected Class<Task> typeOfHandlingEntity() { return Task.class; }
-    protected Class<TaskCB> typeOfHandlingConditionBean() { return TaskCB.class; }
+    protected Class<? extends TaskStatus> typeOfSelectedEntity() { return TaskStatus.class; }
+    protected Class<TaskStatus> typeOfHandlingEntity() { return TaskStatus.class; }
+    protected Class<TaskStatusCB> typeOfHandlingConditionBean() { return TaskStatusCB.class; }
 }

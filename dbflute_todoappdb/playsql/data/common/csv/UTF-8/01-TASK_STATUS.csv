@@ -1,0 +1,5 @@
+TASK_STATUS_CODE,TASK_STATUS_NAME,DESCRIPTION,DISPLAY_ORDER
+YET,NotStartedYet,未着手,1
+WIP,WorkInProgress2,進行中,2
+CMP,Completed,完了,3
+DEL,Deleted,削除,4
