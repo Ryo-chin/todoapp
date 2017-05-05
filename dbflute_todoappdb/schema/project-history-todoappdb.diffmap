@@ -1,4 +1,50 @@
 map:{
+    ; 2017/05/04 02:15:40 = map:{
+        ; diffDate = 2017/05/04 02:15:40
+        ; tableDiff = map:{
+            ; TASK = map:{
+                ; tableName = TASK
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; DONE_FLG = map:{
+                        ; columnName = DONE_FLG
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = CHAR
+                            ; previous = INT
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 1
+                            ; previous = 10
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2017/05/04 02:11:01 = map:{
+        ; diffDate = 2017/05/04 02:11:01
+        ; tableDiff = map:{
+            ; TASK = map:{
+                ; tableName = TASK
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; DONE_FLG = map:{
+                        ; columnName = DONE_FLG
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = INT
+                            ; previous = CHAR
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 10
+                            ; previous = 1
+                        }
+                    }
+                }
+            }
+        }
+    }
     ; 2017/05/03 23:57:57 = map:{
         ; diffDate = 2017/05/03 23:57:57
         ; tableCount = map:{

@@ -15,21 +15,35 @@
  */
 package org.todoapp.mylasta.direction.sponsor;
 
+import org.dbflute.util.DfStringUtil;
 import org.dbflute.util.DfTypeUtil;
 import org.lastaflute.web.path.ActionAdjustmentProvider;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author jflute
+ * @author ryo-chin
  */
 public class TodoappActionAdjustmentProvider implements ActionAdjustmentProvider {
 
-    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-    // you can adjust your actions by overriding
-    // default methods defined at the interface
-    // _/_/_/_/_/_/_/_/_/_/
+    protected static final String API_URL_PREFIX = "/api";
 
     @Override
     public String toString() {
         return DfTypeUtil.toClassTitle(this) + ":{}";
+    }
+
+    @Override
+    public boolean isForcedRoutingExcept(HttpServletRequest request, String requestPath) {
+        // of course, request to angular resources does not need routing
+        // (requestPath might contain /dbflute-intro/ so use contains())
+        return !requestPath.contains(API_URL_PREFIX);
+    }
+
+    @Override
+    public String customizeActionMappingRequestPath(String requestPath) {
+        // action class name does not need 'Api' prefix
+        return DfStringUtil.substringFirstRear(requestPath, API_URL_PREFIX);
     }
 }

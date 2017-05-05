@@ -68,10 +68,10 @@ public interface TodoappEnv {
     /** The key of the configuration. e.g. jdbc:mysql://localhost:3306/todoappdb */
     String JDBC_URL = "jdbc.url";
 
-    /** The key of the configuration. e.g. todoappdb */
+    /** The key of the configuration. e.g. root */
     String JDBC_USER = "jdbc.user";
 
-    /** The key of the configuration. e.g. todoappdb */
+    /** The key of the configuration. e.g.  */
     String JDBC_PASSWORD = "jdbc.password";
 
     /** The key of the configuration. e.g. 10 */
@@ -79,6 +79,9 @@ public interface TodoappEnv {
 
     /** The key of the configuration. e.g. localhost:8090/todoapp */
     String SERVER_DOMAIN = "server.domain";
+
+    /** The key of the configuration. e.g. http://localhost:4200 */
+    String CLIENT_DOMAIN = "client.domain";
 
     /**
      * Get the value of property as {@link String}.
@@ -251,7 +254,7 @@ public interface TodoappEnv {
 
     /**
      * Get the value for the key 'jdbc.user'. <br>
-     * The value is, e.g. todoappdb <br>
+     * The value is, e.g. root <br>
      * comment: The user of database connection for JDBC
      * @return The value of found property. (NotNull: if not found, exception but basically no way)
      */
@@ -259,11 +262,20 @@ public interface TodoappEnv {
 
     /**
      * Get the value for the key 'jdbc.password'. <br>
-     * The value is, e.g. todoappdb <br>
+     * The value is, e.g.  <br>
      * comment: @Secure The password of database connection for JDBC
      * @return The value of found property. (NotNull: if not found, exception but basically no way)
      */
     String getJdbcPassword();
+
+    /**
+     * Get the value for the key 'jdbc.password' as {@link Integer}. <br>
+     * The value is, e.g.  <br>
+     * comment: @Secure The password of database connection for JDBC
+     * @return The value of found property. (NotNull: if not found, exception but basically no way)
+     * @throws NumberFormatException When the property is not integer.
+     */
+    Integer getJdbcPasswordAsInteger();
 
     /**
      * Get the value for the key 'jdbc.connection.pooling.size'. <br>
@@ -289,6 +301,14 @@ public interface TodoappEnv {
      * @return The value of found property. (NotNull: if not found, exception but basically no way)
      */
     String getServerDomain();
+
+    /**
+     * Get the value for the key 'client.domain'. <br>
+     * The value is, e.g. http://localhost:4200 <br>
+     * comment: ------
+     * @return The value of found property. (NotNull: if not found, exception but basically no way)
+     */
+    String getClientDomain();
 
     /**
      * The simple implementation for configuration.
@@ -383,6 +403,10 @@ public interface TodoappEnv {
             return get(TodoappEnv.JDBC_PASSWORD);
         }
 
+        public Integer getJdbcPasswordAsInteger() {
+            return getAsInteger(TodoappEnv.JDBC_PASSWORD);
+        }
+
         public String getJdbcConnectionPoolingSize() {
             return get(TodoappEnv.JDBC_CONNECTION_POOLING_SIZE);
         }
@@ -393,6 +417,10 @@ public interface TodoappEnv {
 
         public String getServerDomain() {
             return get(TodoappEnv.SERVER_DOMAIN);
+        }
+
+        public String getClientDomain() {
+            return get(TodoappEnv.CLIENT_DOMAIN);
         }
     }
 }

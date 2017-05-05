@@ -248,27 +248,27 @@ public abstract class AbstractBsTaskCQ extends AbstractConditionQuery {
     protected abstract ConditionValue xgetCValueDescription();
 
     /**
-     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg}
-     * @param doneFlg The value of doneFlg as equal. (NullAllowed: if null (or empty), no condition)
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg}
+     * @param doneFlg The value of doneFlg as equal. (basically NotNull: error as default, or no condition as option)
      */
-    protected void setDoneFlg_Equal(String doneFlg) {
-        doSetDoneFlg_Equal(fRES(doneFlg));
+    protected void setDoneFlg_Equal(Integer doneFlg) {
+        doSetDoneFlg_Equal(doneFlg);
     }
 
     /**
-     * Equal(=). As Flg. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg} <br>
+     * Equal(=). As Flg. And NullIgnored, OnlyOnceRegistered. <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
      * general boolean classification for every flg-column
      * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
      */
     public void setDoneFlg_Equal_AsFlg(CDef.Flg cdef) {
-        doSetDoneFlg_Equal(cdef != null ? cdef.code() : null);
+        doSetDoneFlg_Equal(cTNum(cdef != null ? cdef.code() : null, Integer.class));
     }
 
     /**
      * Equal(=). As boolean for Flg. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg} <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
      * general boolean classification for every flg-column
      * @param determination The determination, true or false. (basically NotNull: error as default, or no condition as option)
      */
@@ -277,7 +277,7 @@ public abstract class AbstractBsTaskCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Equal(=). As True (1). And OnlyOnceRegistered. <br>
+     * Equal(=). As True (1). And NullIgnored, OnlyOnceRegistered. <br>
      * Checked: means yes
      */
     public void setDoneFlg_Equal_True() {
@@ -285,38 +285,38 @@ public abstract class AbstractBsTaskCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Equal(=). As False (0). And OnlyOnceRegistered. <br>
+     * Equal(=). As False (0). And NullIgnored, OnlyOnceRegistered. <br>
      * Unchecked: means no
      */
     public void setDoneFlg_Equal_False() {
         setDoneFlg_Equal_AsFlg(CDef.Flg.False);
     }
 
-    protected void doSetDoneFlg_Equal(String doneFlg) {
+    protected void doSetDoneFlg_Equal(Integer doneFlg) {
         regDoneFlg(CK_EQ, doneFlg);
     }
 
     /**
-     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg}
-     * @param doneFlg The value of doneFlg as notEqual. (NullAllowed: if null (or empty), no condition)
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg}
+     * @param doneFlg The value of doneFlg as notEqual. (basically NotNull: error as default, or no condition as option)
      */
-    protected void setDoneFlg_NotEqual(String doneFlg) {
-        doSetDoneFlg_NotEqual(fRES(doneFlg));
+    protected void setDoneFlg_NotEqual(Integer doneFlg) {
+        doSetDoneFlg_NotEqual(doneFlg);
     }
 
     /**
-     * NotEqual(&lt;&gt;). As Flg. And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg} <br>
+     * NotEqual(&lt;&gt;). As Flg. And NullIgnored, OnlyOnceRegistered. <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
      * general boolean classification for every flg-column
      * @param cdef The instance of classification definition (as ENUM type). (basically NotNull: error as default, or no condition as option)
      */
     public void setDoneFlg_NotEqual_AsFlg(CDef.Flg cdef) {
-        doSetDoneFlg_NotEqual(cdef != null ? cdef.code() : null);
+        doSetDoneFlg_NotEqual(cTNum(cdef != null ? cdef.code() : null, Integer.class));
     }
 
     /**
-     * NotEqual(&lt;&gt;). As True (1). And OnlyOnceRegistered. <br>
+     * NotEqual(&lt;&gt;). As True (1). And NullIgnored, OnlyOnceRegistered. <br>
      * Checked: means yes
      */
     public void setDoneFlg_NotEqual_True() {
@@ -324,60 +324,60 @@ public abstract class AbstractBsTaskCQ extends AbstractConditionQuery {
     }
 
     /**
-     * NotEqual(&lt;&gt;). As False (0). And OnlyOnceRegistered. <br>
+     * NotEqual(&lt;&gt;). As False (0). And NullIgnored, OnlyOnceRegistered. <br>
      * Unchecked: means no
      */
     public void setDoneFlg_NotEqual_False() {
         setDoneFlg_NotEqual_AsFlg(CDef.Flg.False);
     }
 
-    protected void doSetDoneFlg_NotEqual(String doneFlg) {
+    protected void doSetDoneFlg_NotEqual(Integer doneFlg) {
         regDoneFlg(CK_NES, doneFlg);
     }
 
     /**
-     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg}
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg}
      * @param doneFlgList The collection of doneFlg as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    protected void setDoneFlg_InScope(Collection<String> doneFlgList) {
+    protected void setDoneFlg_InScope(Collection<Integer> doneFlgList) {
         doSetDoneFlg_InScope(doneFlgList);
     }
 
     /**
-     * InScope {in ('a', 'b')}. As Flg. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg} <br>
+     * InScope {in (1, 2)}. As Flg. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
      * general boolean classification for every flg-column
      * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
      */
     public void setDoneFlg_InScope_AsFlg(Collection<CDef.Flg> cdefList) {
-        doSetDoneFlg_InScope(cTStrL(cdefList));
+        doSetDoneFlg_InScope(cTNumL(cdefList, Integer.class));
     }
 
-    protected void doSetDoneFlg_InScope(Collection<String> doneFlgList) {
+    protected void doSetDoneFlg_InScope(Collection<Integer> doneFlgList) {
         regINS(CK_INS, cTL(doneFlgList), xgetCValueDoneFlg(), "DONE_FLG");
     }
 
     /**
-     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg}
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg}
      * @param doneFlgList The collection of doneFlg as notInScope. (NullAllowed: if null (or empty), no condition)
      */
-    protected void setDoneFlg_NotInScope(Collection<String> doneFlgList) {
+    protected void setDoneFlg_NotInScope(Collection<Integer> doneFlgList) {
         doSetDoneFlg_NotInScope(doneFlgList);
     }
 
     /**
-     * NotInScope {not in ('a', 'b')}. As Flg. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg} <br>
+     * NotInScope {not in (1, 2)}. As Flg. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
      * general boolean classification for every flg-column
      * @param cdefList The list of classification definition (as ENUM type). (NullAllowed: if null (or empty), no condition)
      */
     public void setDoneFlg_NotInScope_AsFlg(Collection<CDef.Flg> cdefList) {
-        doSetDoneFlg_NotInScope(cTStrL(cdefList));
+        doSetDoneFlg_NotInScope(cTNumL(cdefList, Integer.class));
     }
 
-    protected void doSetDoneFlg_NotInScope(Collection<String> doneFlgList) {
+    protected void doSetDoneFlg_NotInScope(Collection<Integer> doneFlgList) {
         regINS(CK_NINS, cTL(doneFlgList), xgetCValueDoneFlg(), "DONE_FLG");
     }
 

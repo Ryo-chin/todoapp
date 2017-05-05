@@ -59,7 +59,7 @@ import org.todoapp.dbflute.exentity.*;
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Long taskId = entity.getTaskId();
  * String description = entity.getDescription();
- * String doneFlg = entity.getDoneFlg();
+ * Integer doneFlg = entity.getDoneFlg();
  * entity.setTaskId(taskId);
  * entity.setDescription(description);
  * entity.setDoneFlg(doneFlg);
@@ -84,8 +84,8 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     /** DESCRIPTION: {NotNull, TEXT(65535)} */
     protected String _description;
 
-    /** DONE_FLG: {NotNull, CHAR(1), classification=Flg} */
-    protected String _doneFlg;
+    /** DONE_FLG: {NotNull, INT(10), classification=Flg} */
+    protected Integer _doneFlg;
 
     // ===================================================================================
     //                                                                             DB Meta
@@ -114,7 +114,7 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     //                                                             =======================
     /**
      * Get the value of doneFlg as the classification of Flg. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg} <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
      * general boolean classification for every flg-column
      * <p>It's treated as case insensitive and if the code value is null, it returns null.</p>
      * @return The instance of classification definition (as ENUM type). (NullAllowed: when the column value is null)
@@ -125,17 +125,17 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
 
     /**
      * Set the value of doneFlg as the classification of Flg. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg} <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
      * general boolean classification for every flg-column
      * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, null value is set to the column)
      */
     public void setDoneFlgAsFlg(CDef.Flg cdef) {
-        setDoneFlg(cdef != null ? cdef.code() : null);
+        setDoneFlg(cdef != null ? toNumber(cdef.code(), Integer.class) : null);
     }
 
     /**
      * Set the value of doneFlg as boolean. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg} <br>
+     * DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
      * general boolean classification for every flg-column
      * @param determination The determination, true or false. (NullAllowed: if null, null value is set to the column)
      */
@@ -308,19 +308,19 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
     }
 
     /**
-     * [get] DONE_FLG: {NotNull, CHAR(1), classification=Flg} <br>
+     * [get] DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
      * @return The value of the column 'DONE_FLG'. (basically NotNull if selected: for the constraint)
      */
-    public String getDoneFlg() {
+    public Integer getDoneFlg() {
         checkSpecifiedProperty("doneFlg");
-        return convertEmptyToNull(_doneFlg);
+        return _doneFlg;
     }
 
     /**
-     * [set] DONE_FLG: {NotNull, CHAR(1), classification=Flg} <br>
+     * [set] DONE_FLG: {NotNull, INT(10), classification=Flg} <br>
      * @param doneFlg The value of the column 'DONE_FLG'. (basically NotNull if update: for the constraint)
      */
-    protected void setDoneFlg(String doneFlg) {
+    protected void setDoneFlg(Integer doneFlg) {
         checkClassificationCode("DONE_FLG", CDef.DefMeta.Flg, doneFlg);
         registerModifiedProperty("doneFlg");
         _doneFlg = doneFlg;
@@ -330,7 +330,7 @@ public abstract class BsTask extends AbstractEntity implements DomainEntity {
      * For framework so basically DON'T use this method.
      * @param doneFlg The value of the column 'DONE_FLG'. (basically NotNull if update: for the constraint)
      */
-    public void mynativeMappingDoneFlg(String doneFlg) {
+    public void mynativeMappingDoneFlg(Integer doneFlg) {
         setDoneFlg(doneFlg);
     }
 }

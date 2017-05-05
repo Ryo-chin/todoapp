@@ -64,7 +64,7 @@ public class TaskDbm extends AbstractDBMeta {
             if (cls != null) {
                 ((Task)et).setDoneFlgAsFlg(cls);
             } else {
-                ((Task)et).mynativeMappingDoneFlg((String)vl);
+                ((Task)et).mynativeMappingDoneFlg(ctn(vl, Integer.class));
             }
         }, "doneFlg");
     }
@@ -89,7 +89,7 @@ public class TaskDbm extends AbstractDBMeta {
     //                                                                         ===========
     protected final ColumnInfo _columnTaskId = cci("TASK_ID", "TASK_ID", null, null, Long.class, "taskId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDescription = cci("DESCRIPTION", "DESCRIPTION", null, null, String.class, "description", null, false, false, true, "TEXT", 65535, 0, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnDoneFlg = cci("DONE_FLG", "DONE_FLG", null, null, String.class, "doneFlg", null, false, false, true, "CHAR", 1, 0, null, false, null, null, null, null, CDef.DefMeta.Flg, false);
+    protected final ColumnInfo _columnDoneFlg = cci("DONE_FLG", "DONE_FLG", null, null, Integer.class, "doneFlg", null, false, false, true, "INT", 10, 0, null, false, null, null, null, null, CDef.DefMeta.Flg, false);
 
     /**
      * TASK_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -102,7 +102,7 @@ public class TaskDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDescription() { return _columnDescription; }
     /**
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg}
+     * DONE_FLG: {NotNull, INT(10), classification=Flg}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnDoneFlg() { return _columnDoneFlg; }

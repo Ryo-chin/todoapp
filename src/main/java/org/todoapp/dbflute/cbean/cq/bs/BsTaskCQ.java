@@ -122,14 +122,14 @@ public class BsTaskCQ extends AbstractBsTaskCQ {
 
     /** 
      * Add order-by as ascend. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg}
+     * DONE_FLG: {NotNull, INT(10), classification=Flg}
      * @return this. (NotNull)
      */
     public BsTaskCQ addOrderBy_DoneFlg_Asc() { regOBA("DONE_FLG"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * DONE_FLG: {NotNull, CHAR(1), classification=Flg}
+     * DONE_FLG: {NotNull, INT(10), classification=Flg}
      * @return this. (NotNull)
      */
     public BsTaskCQ addOrderBy_DoneFlg_Desc() { regOBD("DONE_FLG"); return this; }

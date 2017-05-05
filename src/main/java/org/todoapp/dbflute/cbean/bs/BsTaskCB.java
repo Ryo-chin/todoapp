@@ -308,7 +308,7 @@ public class BsTaskCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnDescription() { return doColumn("DESCRIPTION"); }
         /**
-         * DONE_FLG: {NotNull, CHAR(1), classification=Flg}
+         * DONE_FLG: {NotNull, INT(10), classification=Flg}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnDoneFlg() { return doColumn("DONE_FLG"); }

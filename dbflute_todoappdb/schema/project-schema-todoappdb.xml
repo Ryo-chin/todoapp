@@ -597,8 +597,8 @@
             pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="TEXT" javaType="String"
             name="DESCRIPTION" required="true" size="65535" type="LONGVARCHAR"/>
-        <column comment="" dbType="CHAR" javaType="String"
-            name="DONE_FLG" required="true" size="1" type="CHAR"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="DONE_FLG" required="true" size="10" type="INTEGER"/>
     </table>
     <table comment="退会理由 : 会員に選ばせる定型的な退会理由のマスタ。そういえば、これ表示順カラムがないですねぇ..."
         name="WITHDRAWAL_REASON" schema="todoappdb.$$NoNameSchema$$" type="TABLE">

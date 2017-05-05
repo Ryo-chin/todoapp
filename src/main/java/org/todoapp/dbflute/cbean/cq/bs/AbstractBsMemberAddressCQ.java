@@ -15,31 +15,20 @@
  */
 package org.todoapp.dbflute.cbean.cq.bs;
 
-import org.dbflute.cbean.AbstractConditionQuery;
-import org.dbflute.cbean.ConditionBean;
-import org.dbflute.cbean.ConditionQuery;
-import org.dbflute.cbean.chelper.HpQDRFunction;
-import org.dbflute.cbean.chelper.HpSLCCustomized;
-import org.dbflute.cbean.chelper.HpSLCFunction;
-import org.dbflute.cbean.chelper.HpSLCSetupper;
-import org.dbflute.cbean.ckey.ConditionKey;
-import org.dbflute.cbean.coption.ConditionOptionCall;
-import org.dbflute.cbean.coption.DerivedReferrerOption;
-import org.dbflute.cbean.coption.FromToOption;
-import org.dbflute.cbean.coption.LikeSearchOption;
-import org.dbflute.cbean.coption.RangeOfOption;
-import org.dbflute.cbean.coption.ScalarConditionOption;
+import java.util.*;
+
+import org.dbflute.cbean.*;
+import org.dbflute.cbean.chelper.*;
+import org.dbflute.cbean.ckey.*;
+import org.dbflute.cbean.coption.*;
 import org.dbflute.cbean.cvalue.ConditionValue;
-import org.dbflute.cbean.ordering.ManualOrderOptionCall;
-import org.dbflute.cbean.scoping.SubQuery;
+import org.dbflute.cbean.ordering.*;
+import org.dbflute.cbean.scoping.*;
 import org.dbflute.cbean.sqlclause.SqlClause;
 import org.dbflute.dbmeta.DBMetaProvider;
-import org.todoapp.dbflute.allcommon.DBMetaInstanceHandler;
-import org.todoapp.dbflute.cbean.MemberAddressCB;
-import org.todoapp.dbflute.cbean.cq.MemberAddressCQ;
-
-import java.util.Collection;
-import java.util.Date;
+import org.todoapp.dbflute.allcommon.*;
+import org.todoapp.dbflute.cbean.*;
+import org.todoapp.dbflute.cbean.cq.*;
 
 /**
  * The abstract condition-query of MEMBER_ADDRESS.

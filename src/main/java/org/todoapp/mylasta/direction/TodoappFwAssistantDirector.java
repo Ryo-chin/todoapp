@@ -33,6 +33,7 @@ import org.lastaflute.web.path.ActionAdjustmentProvider;
 import org.lastaflute.web.ruts.multipart.MultipartResourceProvider;
 import org.lastaflute.web.ruts.renderer.HtmlRenderingProvider;
 import org.lastaflute.web.servlet.cookie.CookieResourceProvider;
+import org.lastaflute.web.servlet.filter.cors.CorsHook;
 import org.lastaflute.web.servlet.request.UserLocaleProcessProvider;
 import org.lastaflute.web.servlet.request.UserTimeZoneProcessProvider;
 import org.todoapp.mylasta.direction.sponsor.TodoappActionAdjustmentProvider;
@@ -60,6 +61,8 @@ public class TodoappFwAssistantDirector extends CachedFwAssistantDirector {
     //                                                                           =========
     @Resource
     private TodoappConfig config;
+    @Resource
+    private TodoappEnv env;
 
     // ===================================================================================
     //                                                                              Assist
@@ -139,6 +142,8 @@ public class TodoappFwAssistantDirector extends CachedFwAssistantDirector {
         direction.directApiCall(createApiFailureHook());
         direction.directHtmlRendering(createHtmlRenderingProvider());
         direction.directMultipart(createMultipartResourceProvider());
+        final String originDomain = env.getClientDomain();
+        direction.directCors(new CorsHook(originDomain));
     }
 
     protected UserLocaleProcessProvider createUserLocaleProcessProvider() {
