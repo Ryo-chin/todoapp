@@ -32,6 +32,15 @@ public class TaskAction extends TodoappBaseAction {
     // ===================================================================================
     //                                                                             Execute
     //                                                                             =======
+
+    @Execute
+    public JsonResponse<TaskResult> index(Long taskId) {
+        return taskBhv.selectEntity(cb -> cb.acceptPK(taskId))
+                .map(TaskResult::new)
+                .map(this::asJson)
+                .orElse(JsonResponse.asEmptyBody());
+    }
+
     @Execute
     public JsonResponse<List<TaskResult>> list() {
         // TODO ユーザーテーブル作成後にIDで絞り込み by ryo-chin (2017/05/04)
